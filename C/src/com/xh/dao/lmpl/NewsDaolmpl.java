@@ -77,13 +77,13 @@ public class NewsDaolmpl extends JdbcUtil implements NewsDao {
 
 		for (int i = 0; i < params.length; i++) {
 			params[i]=list.get(i);
-			
-			
-			
-			
+
+
+
+
 
 		}
-		
+
 		System.err.println(t.getImg()+"------------------------------------------------------------------");
 
 
@@ -236,7 +236,57 @@ public class NewsDaolmpl extends JdbcUtil implements NewsDao {
 	}
 
 
+	@Override
+	public List<News> findAlls(int pageNum, int pageSize) {
 
+		if (pageNum!=0) {//因为前端的分页符没下标1的，跳了加1,===>0,2,3,4,5,6		
+			pageNum=pageNum*6-6;//做处理把2转换为1
+		}
+		
+		String sql = "select * from easybuy_news limit ?,?";
+
+		//创建一个集合保存分页新闻信息
+		List<News> newss = new ArrayList<>();
+		Object[] params={pageNum,pageSize};
+
+		try {
+			result = exceuteQuery(sql,params);
+
+			newss=ResultSet_Util.selectAllsa(result, News.class);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			closeAss(conn, pre, result);
+		}
+		
+		return newss;
+
+	}
+
+
+	@Override
+	public int getTotalCount() {
+		//		String sql = "select count(*) as 'count' from easybuy_News";
+		String sql = "select count(*) as 'count' from easybuy_News";
+		int count=0;
+		System.err.println(count+"=====================hah");
+		try {
+			result= exceuteQuery(sql);
+
+			if (result.next()) {
+				count = result.getInt("count");
+				System.err.println(count+"=====================hah");
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			closeAss(conn, pre, result);
+		}
+		return count;
+	}
 
 }
 

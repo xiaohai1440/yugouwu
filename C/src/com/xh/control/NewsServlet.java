@@ -27,7 +27,7 @@ import org.apache.log4j.Logger;
 import com.xh.bean.News;
 import com.xh.dao.NewsDao;
 import com.xh.dao.lmpl.NewsDaolmpl;
-import com.xh.service.NewsServletDao;
+import com.xh.service.NewsServiceDao;
 import com.xh.servicelmpl.NewsServletlmpl;
 
 
@@ -44,7 +44,7 @@ public class NewsServlet extends HttpServlet {
 	//private static Logger logger=Logger.getLogger(clazz);
 
 
-	NewsServletDao service_news=new NewsServletlmpl();
+	NewsServiceDao service_news=new NewsServletlmpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -57,7 +57,7 @@ public class NewsServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 设置post乱码
 		System.err.println("================================");
-		req.setCharacterEncoding("utf-8");
+		/*req.setCharacterEncoding("utf-8");*/
 		String method = req.getParameter("method");
 		System.out.println(method);
 		switch (method) {
@@ -304,18 +304,17 @@ News news=add_update(req);
 	private void delNews(HttpServletRequest req, HttpServletResponse resp) {
 
 		
-		System.err.println("=======================00"+req.getParameter("id"));
 		boolean flag = service_news.delete(req.getParameter("id"));
 		if (flag) {
 			System.out.println("删除成功");
 		} else {
 			System.out.println("删除失败");
 		}
-		try {
+	/*	try {
 			resp.sendRedirect("NewsServlet?method=getAllNews");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 

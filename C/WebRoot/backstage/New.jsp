@@ -69,172 +69,217 @@
 					<th width="9%">操作</th>
 				</tr>
 			</thead>
-			<tbody id="x-img">
 
-
-				<c:forEach var="news" items="${requestScope.newsList}" varStatus="status">
-
-					<tr>
-						<td><input type="checkbox" value="1" name="">
-						</td>
-
-
-						<td>${news.id}</td>
-						<td>新闻</td>
-						<td>${news.title}</td>
-						<td align="left">
-						
-					<%-- 	<%
-                         String img="";
-                          %> --%>
-                         
-                         <c:if test="${not empty news.img}">
-                         <%--   <c:set var="num" value="${news.img}" scope="request"></c:set> --%>
-                         	<%-- <%
-                         	
-                    		img=(String)request.getAttribute("num");
-                    		System.out.print(img+"222222222222222222222222222");
-  							 request.removeAttribute("num");
-                   			img=img.substring(img.lastIndexOf("\\")+1,img.length());
-                   			 %> --%>
-                   			  <img src="upload/${news.img}" alt="无图" width="56" height="56">
-                         </c:if>
-                         
-                         <c:if test="${empty news.img}">
-                         
-                         <c:set var="num" value="not" scope="request"></c:set>
-                         
-                         		<img src="" alt="无图" width="56" height="56">
-                         </c:if>
-
-						
-						</td>
-
-						<td>${news.createTime}</td>
-
-						<td>${news.content}</td>
-
-						<td class="td-status"><span
-							class="layui-btn layui-btn-normal layui-btn-mini"> 已显示 </span></td>
-						<td class="td-manage"><a style="text-decoration:none"
-							onclick="banner_stop(this,'10001')" href="javascript:;"
-							title="不显示"> <i class="layui-icon">&#xe601;</i> </a>
-							<!--  href="javascript:;" -->
-							<!-- onclick="new_edit('修改','backstage/new_edit.jsp','4','','510')" -->
-							 <a title="修改" href="NewsServlet?method=findById&id=${news.id}" class="ml-5" style="text-decoration:none"> 
-							
-							<i class="layui-icon">&#xe642;</i>
-							</a> 
-							
-							<a title="删除" href="javascript:;" onclick="banner_del(this,'1','${news.id}')" style="text-decoration:none"> 
-							<i class="layui-icon">&#xe640;</i>
-						</a>
-						</td>
-
-					</tr>
-
-				</c:forEach>
-
-
-
-
+			<tbody id="list-content">
 
 			</tbody>
+
 		</table>
+
 		<div id="page"></div>
+
+
 	</div>
 	<br />
 	<br />
 	<br />
+	<script src="js/jquery.js" charset="utf-8"></script>
 	<script src="backstage/lib/layui/layui.js" charset="utf-8"></script>
 	<script src="backstage/js/x-layui.js" charset="utf-8"></script>
-	
+
+	<script type="text/javascript">
+		load(0); //默认初始化,pageNum为0
+		function load(pageNum) {
+
+			$
+					.ajax({
+						url : "list", //需要提交的服务器地址
+						type : "post", //请求的方式
+						data : {
+							"pageNum" : pageNum
+						}, //传递给服务器的参数
+						success : function(data) { //回调函数
+							var data = $.parseJSON(data);//从数据库获得的json对象，已经包含查询回来的数据
+							//清空数据不然会出现迭代
+							$("#list-content").html('');
+							//追加数据  data.list需要遍历的集合  list必须是pageInfo中的属性名
+
+							/* 用layui--实现分页 */
+							layui.use([ 'laydate', 'element', 'laypage',
+									'layer' ], function() {
+								$ = layui.jquery; //jquery
+								laydate = layui.laydate;//日期插件
+								lement = layui.element();//导航
+								laypage = layui.laypage;//分页
+								layer = layui.layer; //弹出层
+								//以上模块根据需要引入
+
+								laypage({
+									cont : 'page',
+									pages : data.pages, //页数
+									curr : data.pageNum,//当前页下标
+									skip : true,
+// 									/* first:'首页',
+// 									last:'尾页', */
+									prev : '<em><</em>',
+									next : '<em>></em>',
+									jump : function(obj, first) { //触发分页后的回调
+										if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+											$("#list-content").text('');//先清空原先内容
+											/* console.log(data.pageNum); */
+											load(obj.curr);//调用函数，请求数据库，返回数据
+										}
+									}
+								});
+								layer.ready(function() { //为了layer.ext.js加载完毕再执行
+									layer.photos({
+										photos : '#list-content'
+									//,shift: 5 //0-6的选择，指定弹出图片动画类型，默认随机
+									});
+								});
+
+							});
+							//data.list//拿到数据库的集合
+							$
+									.each(
+											data.list,
+											function(i, news) {
+												//在表格中拼接                      
+												$("#list-content")
+														.append(
+																"<tr><td><input type='checkbox' value='1' name=''></td>"
+																		+ "<td>"
+																		+ news.id
+																		+ "</td>"
+																		+ "<td>"
+																		+ news.module
+																		+ "</td>"
+																		+ "<td>"
+																		+ news.title
+																		+ "</td>"
+																		+ "<td align='left'><img src='upload/"+news.img+"' alt='' width='56'height='56' ></td>"
+																		+ "<td>"
+																		+ news.createTime
+																		+ "</td>"
+																		+ "<td>"
+																		+ news.content
+																		+ "</td>"
+																		+ "<td class='td-status'><span class='layui-btn layui-btn-normal layui-btn-mini'> 已显示 </span></td>"
+																		+ "<td class='td-manage'><a style='text-decoration:none'onclick='banner_stop(this,'10001')' "
+																		+ "href='javascript:; 'title='不显示'> <i class='layui-icon'>&#xe601;</i> </a> "
+																		+ "<a title='修改'href='javascript:;'  onclick='new_edit(&apos;修改&apos;,&apos;NewsServlet?method=findById&id="
+																		+ news.id   
+																		+ "&apos;,4,&apos;&apos;,510)'  class='ml-5' style='text-decoration:none'> <i class='layui-icon'>"
+																		+ "&#xe642;</i> </a> <a title='删除' href='javascript:;' onclick='banner_del(this,"
+																		+ news.id
+																		+ ")' style='text-decoration:none'>"
+																		+ " <i class='layui-icon'>&#xe640;</i> </a></td>");
+											});
+
+						}
+					});
+		};
+
+		//==========================================================
+
+		//渲染分页  总记录数  当前页码  每页数据量
+
+		//批量删除提交
+		function delAll() {
+			layer.confirm('确认要删除吗？', function(index) {
+				//捉到所有被选中的，发异步进行删除
+				layer.msg('删除成功', {
+					icon : 1
+				});
+			});
+		};
+		/*添加*/
+		function new_add(title, url, w, h) {
+			x_admin_show(title, url, w, h);
+		};
+		/*停用*/
+		function banner_stop(obj, id) {
+			layer
+					.confirm(
+							'确认不显示吗？',
+							function(index) {
+								//发异步把用户状态进行更改
+								$(obj)
+										.parents("tr")
+										.find(".td-manage")
+										.prepend(
+												'<a style="text-decoration:none" onClick="banner_start(this,id)" href="javascript:;" title="显示"><i class="layui-icon">&#xe62f;</i></a>');
+								$(obj)
+										.parents("tr")
+										.find(".td-status")
+										.jsp(
+												'<span class="layui-btn layui-btn-disabled layui-btn-mini">不显示</span>');
+								$(obj).remove();
+								layer.msg('不显示!', {
+									icon : 5,
+									time : 1000
+								});
+							});
+		};
+
+		/*启用*/
+		function banner_start(obj, id) {
+			layer
+					.confirm(
+							'确认要显示吗？',
+							function(index) {
+								//发异步把用户状态进行更改
+								$(obj)
+										.parents("tr")
+										.find(".td-manage")
+										.prepend(
+												'<a style="text-decoration:none" onClick="banner_stop(this,id)" href="javascript:;" title="不显示"><i class="layui-icon">&#xe601;</i></a>');
+								$(obj)
+										.parents("tr")
+										.find(".td-status")
+										.jsp(
+												'<span class="layui-btn layui-btn-normal layui-btn-mini">已显示</span>');
+								$(obj).remove();
+								layer.msg('已显示!', {
+									icon : 6,
+									time : 1000
+								});
+							});
+		};
+		// 编辑
+		function new_edit(title, url, id, w, h) {
+		
+		window.location.href = url;
+		
+			x_admin_show(title, url, w, h);
+		};
+		/*删除*/
+		function banner_del(obj, i) {
+			layer.confirm('确认要删除吗？', function(index) {
+				//发异步删除数据
+				$(obj).parents("tr").remove();
+
+				layer.msg('已删除!', {
+					icon : 1,
+					time : 1000
+				});
+
+				window.location.href = "NewsServlet?method=delNews&id=" + i;
+				/*   window.open("NewsServlet?method=delNews&id="+i); */
+
+			});
+		};
+	</script>
+
+
+
 	<script>
-            layui.use(['laydate','element','laypage','layer'], function(){
-                $ = layui.jquery;//jquery
-              laydate = layui.laydate;//日期插件
-              lement = layui.element();//面包导航
-              laypage = layui.laypage;//分页
-              layer = layui.layer;//弹出层
-
-              
-			  //以上模块根据需要引入
-              laypage({
-                cont: 'page'
-                ,pages: 100
-                ,first: 1
-                ,last: 100
-                ,prev: '<em><</em>'
-                ,next: '<em>></em>'
-              }); 
-
-                layer.ready(function(){ //为了layer.ext.js加载完毕再执行
-                  layer.photos({
-                    photos: '#x-img'
-                    //,shift: 5 //0-6的选择，指定弹出图片动画类型，默认随机
-                  });
-                }); 
-              
-            });
-
-            //批量删除提交
-             function delAll () {
-                layer.confirm('确认要删除吗？',function(index){
-                    //捉到所有被选中的，发异步进行删除
-                    layer.msg('删除成功', {icon: 1});
-                });
-             };
-             /*添加*/
-            function new_add(title,url,w,h){
-                x_admin_show(title,url,w,h);
-            };
-             /*停用*/
-            function banner_stop(obj,id){
-                layer.confirm('确认不显示吗？',function(index){
-                    //发异步把用户状态进行更改
-                    $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="banner_start(this,id)" href="javascript:;" title="显示"><i class="layui-icon">&#xe62f;</i></a>');
-                    $(obj).parents("tr").find(".td-status").jsp('<span class="layui-btn layui-btn-disabled layui-btn-mini">不显示</span>');
-                    $(obj).remove();
-                    layer.msg('不显示!',{icon: 5,time:1000});
-                });
-            };
-
-            /*启用*/
-            function banner_start(obj,id){
-                layer.confirm('确认要显示吗？',function(index){
-                    //发异步把用户状态进行更改
-                    $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="banner_stop(this,id)" href="javascript:;" title="不显示"><i class="layui-icon">&#xe601;</i></a>');
-                    $(obj).parents("tr").find(".td-status").jsp('<span class="layui-btn layui-btn-normal layui-btn-mini">已显示</span>');
-                    $(obj).remove();
-                    layer.msg('已显示!',{icon: 6,time:1000});
-                });
-            };
-            // 编辑
-            function new_edit (title,url,id,w,h) {
-                x_admin_show(title,url,w,h); 
-            };
-            /*删除*/
-            function banner_del(obj,id,i){
-                layer.confirm('确认要删除吗？',function(index){
-                    //发异步删除数据
-                    $(obj).parents("tr").remove();
-                    
-                    layer.msg('已删除!',{icon:1,time:1000});
-                    
-                  window.location.href="NewsServlet?method=delNews&id="+i; 
-                  /*   window.open("NewsServlet?method=delNews&id="+i); */
-  
-                    
-                });
-            };
-            </script>
-	<script>
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
-        </script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
 </body>
 </html>

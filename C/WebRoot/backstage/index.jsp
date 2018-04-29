@@ -24,7 +24,7 @@
             <div class="layui-header header header-demo">
                 <div class="layui-main">
                     <a class="logo" href="./index.jsp">
-                   <img src="images/banner2.png"></img>
+                   <img src="images/logo.png" height="73px"></img>
                     </a>
                     <ul class="layui-nav" lay-filter="">
                       <li class="layui-nav-item"><img src="images/0.jpg" class="layui-circle" style="border: 2px solid #A9B7B7;" width="35px" alt=""></li>
@@ -111,7 +111,9 @@
                                 </dd>
                                 <dd class="">
                                     <dd class="">
-                                        <a href="javascript:;" _href="../NewsServlet?method=getAllNews">
+                                     <a href="javascript:;" _href="../NewsServlet?method=getAllNews">  
+                                       
+                                        <!--  <a href="New.jsp"> -->
                                             <i class="layui-icon"></i><cite>新闻大爆料</cite>
                                         </a>
                                     </dd>

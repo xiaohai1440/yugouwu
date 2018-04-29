@@ -8,17 +8,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-
-
-
-
-
 /**
  * 
  * @author LSZ
- *  数据库连接与关闭工具类
+ *
+ * 非宁静无以致远！
+ * 2018-4-28下午4:00:09
+ * 数据库连接与关闭工具类
  *
  */
+
 public class JdbcUtil {
 
 
@@ -77,8 +76,7 @@ public class JdbcUtil {
 		
 		
 	}
-	
-	
+		
 
 	/**
 	 * 关闭数据库连接
@@ -105,7 +103,6 @@ public class JdbcUtil {
 
 	}
 
-
 	/**
 	 * 增,删,改的操作
 	 */
@@ -130,14 +127,12 @@ public class JdbcUtil {
 				e.printStackTrace();
 			}finally{
 
-				closeAss(conn, pre, null);
+				closeAss(conn, pre, result);
 			}
 
 		}
 		return num;	
 	}
-
-
 
 	/**
 	 * 查询方法，返回结果集

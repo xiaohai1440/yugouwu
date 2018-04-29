@@ -27,15 +27,11 @@ public class CharsetFilter implements Filter {
 		
 		
 		reques.setCharacterEncoding("UTF-8");
-		
+		response.setCharacterEncoding("UTF-8");
 		
 		//放行
 		filter.doFilter(reques, response);
-		
-		
-		
-		// TODO Auto-generated method stub
-		
+	
 	}
 
 	@Override

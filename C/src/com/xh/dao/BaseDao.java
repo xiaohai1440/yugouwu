@@ -29,8 +29,7 @@ public interface BaseDao<T> {
 	 * 
 	 * @return  查询所有的方法
 	 */
-	List<T> selectAll();
-	
+	List<T> selectAll();	
 	/**
 	 * 
 	 * @param id

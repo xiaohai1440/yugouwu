@@ -11,15 +11,16 @@ import org.apache.log4j.Logger;
 import com.xh.bean.News;
 import com.xh.dao.NewsDao;
 import com.xh.dao.lmpl.NewsDaolmpl;
-import com.xh.service.NewsServletDao;
+import com.xh.service.NewsServiceDao;
 import com.xh.util.JdbcUtil;
+import com.xh.util.PageInfo;
 import com.xh.util.ResultSet_Util;
 
 
 
 
 
-public class NewsServletlmpl implements NewsServletDao {
+public class NewsServletlmpl implements NewsServiceDao {
 	
 	
 	
@@ -84,6 +85,26 @@ public class NewsServletlmpl implements NewsServletDao {
 		return news.select_Id(id);
 		
 		
+	}
+
+	@Override
+	public PageInfo<News> findAlls(int pageNum, int pageSize) {
+		
+		 PageInfo<News> pageInfo=new PageInfo<>();
+		 
+		 
+		 //获取分页后的新闻记者集合，并赋值给 PageInfo<News>，对象  当前页pageNum，显示的条数pageSize
+		 pageInfo.setList(news.findAlls(pageNum, pageSize));
+		 
+		// TODO Auto-generated method stub
+		return pageInfo;
+	}
+
+	@Override
+	public int getTotalCount() {
+		
+		
+		return news.getTotalCount();
 	}
 
 
