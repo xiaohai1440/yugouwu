@@ -21,7 +21,8 @@ import com.xh.util.Md5Encrypt;
 
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
-
+	
+	UserService userService1 = new UserServiceImpl();	
 
 	private String show(String passward){
 
@@ -60,19 +61,38 @@ public class UserServlet extends HttpServlet {
 
 		String parameter = req.getParameter("method");
 
-
 		switch (parameter) {
+		
+		case "uname":
+			
+			
+
+			String name = req.getParameter("username");
+			
+			User login1 = userService1.loginPwd(name);	
+			
+			
+			//给ajax响应
+			  if(login1.getLoginName()!=null){
+		            resp.getWriter().print(false);//返回数据到请求页面
+		        }else{
+		        	//resp.getWriter().write("用户主");//可以是html页面
+		            resp.getWriter().print(true);
+		        }
+
+
+			
+			break;
 
 		case "add":
 
-			UserService userService = new UserServiceImpl();		
+				
 			User user2 = new User();
-
 			user2.setLoginName(req.getParameter("userName"));				
 			user2.setPassword(show(req.getParameter("passWord")));	
 			user2.setEmail(req.getParameter("email"));			
 			user2.setMobile(req.getParameter("phone"));				
-			userService.add(user2);
+			userService1.add(user2);
 
 			resp.sendRedirect("login.jsp");		
 
@@ -86,10 +106,11 @@ public class UserServlet extends HttpServlet {
 			//pwd=show(pwd);
 
 
-			UserService userService1 = new UserServiceImpl();			
+					
 			User login = userService1.loginPwd(user);	
 
-			if (login.getPassword()!=null) {//判断用户的有没有								
+			if (login.getPassword()!=null) {//判断用户的有没有		
+				
 				try {
 
 					if (Md5Encrypt.validPassword(pwd, login.getPassword())||login.getPassword().equals(pwd)) {			
@@ -113,13 +134,14 @@ public class UserServlet extends HttpServlet {
 							resp.addCookie(co1);
 
 						}	
-
+						//
 						req.getSession().setAttribute("user", login);
 						
 						if (login.getType()==0) {
+							//普通用户页面
 							resp.sendRedirect("index.jsp");
 						}else{
-							
+							//后台管理员登录页面
 						    resp.sendRedirect("backstage/index.jsp");
 						}
 
@@ -133,9 +155,6 @@ public class UserServlet extends HttpServlet {
 
 			}else {
 				//	PrintWriter out = resp.getWriter();
-
-
-
 
 				resp.sendRedirect("login.jsp");			
 

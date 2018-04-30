@@ -18,7 +18,45 @@
 <script src="js/jquery-1.12.4.js"></script>
 <script src="js/jquery.slideunlock.js"></script>
 <script src="js/jquery.validate.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/login.js"></script>
+<!-- <script type="text/javascript" src="js/login.js"></script> -->
+<script type="text/javascript" >
+
+
+$(function () {
+	 
+	 
+    	       $("#form").validate({
+    	       
+    	           rules:{//验证规则
+    	              user:{//user是对应的form表单  input标签的name值
+    	                required:true
+    	              },
+    	              pwd:{
+    	                required:true,
+    	                minlength:6,
+    	                maxlength:60
+    	              }
+    	           },
+    	           messages:{//提示信息或者是要求 
+    	        	   user:{
+    	                   required:"用户名不能为空！"
+    	               },
+    	               pwd:{
+    	                   required:"密码不能为空",
+    	                   minlength:"密码长度不能小于6",
+    	                   maxlength:"密码长度不能大于60"
+    	               }
+    	           },
+    	           onfocusout:function (e) {//文本框失去焦点就验证
+    	               // e:相当于下标，即this.index
+    	               $(e).valid();
+    	           }
+    	       });
+    	       
+    	    
+    	   });
+
+</script>
 <style>
 /* 表示提示字的颜色 */
 .error { /*   display:block;
@@ -107,7 +145,7 @@
 
 
 						<div class="pc-submit-ss">
-							<input type="buttom" value="登录" onclick="clicks()">
+							<input type="button" value="登录" onclick="clicks()">
 						</div>
 
 

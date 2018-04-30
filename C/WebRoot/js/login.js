@@ -1,8 +1,8 @@
-
-
-
-    	    $(function () {
+ /*$(function () {
+	 
+	 
     	       $("#form").validate({
+    	       
     	           rules:{//验证规则
     	              user:{//user是对应的form表单  input标签的name值
     	                required:true
@@ -32,18 +32,32 @@
     	    
     	   });
 
-
+*/
 
 
 
 
     $(function () {
+    
+    
+ 
+    
        $("#myForm").validate({
-           rules:{//验证规则
-              userName:{
-                required:true
-              },
-              passWord:{
+           rules:{//验证规则          
+                userName:{             
+                required: true,  //不允许为空            
+                remote: {        //验证用户是否存在validate自带的
+         		  type: "post",  //提交方式
+        		  url: "UserServlet?method=uname",//@WebServlet("/UserServlet")
+        		  data: {//传输数据到后台  @WebServlet("/UserServlet")
+          		  username: function() {//
+            		  return $("#uname").val();//获取到表单的值发送过去取对比数据库jdbc
+           		  }
+          		  },    
+       	       } 
+      		  },
+       
+      		  passWord:{
                 required:true,
                 minlength:6,
                 maxlength:10
@@ -66,9 +80,12 @@
                    required:true,
                }
            },
+                    
            messages:{//提示信息或者是要求 
                userName:{
-                   required:"请输入用户名！"
+                   required:"请输入用户名！",
+                   remote: "用户名已经被注册"
+                     //remote: jQuery.format("用户名已经被注册")
                },
                passWord:{
                    required:"密码不能为空",
@@ -104,4 +121,5 @@
            return this.optional(element)||phone2.test(value);//this.optional(element)用于表单输入值不为空时验证，当field为空时，即element的值为空
        },"手机号码不正确")
    });
-
+   
+   

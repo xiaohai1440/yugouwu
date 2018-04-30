@@ -12,9 +12,14 @@ import com.xh.dao.NewsDao;
 import com.xh.util.JdbcUtil;
 import com.xh.util.ResultSet_Util;
 
-
-
-
+/**
+ * 
+ * @author LSZ
+ *
+ * 非宁静无以致远！
+ * 2018-4-30上午10:40:41   新闻Dao层访问数据库，返回前端页面
+ *
+ */
 
 public class NewsDaolmpl extends JdbcUtil implements NewsDao {
 
@@ -27,8 +32,6 @@ public class NewsDaolmpl extends JdbcUtil implements NewsDao {
 		List<Object> list=new ArrayList();
 		List<String> str=new ArrayList();
 		List<String> name=new ArrayList();
-
-
 
 		if (t.getContent()!=null) {
 			list.add(t.getContent());   str.add("?");name.add("content");
@@ -45,72 +48,39 @@ public class NewsDaolmpl extends JdbcUtil implements NewsDao {
 		if (t.getModule()!=null) {
 			list.add(t.getModule());   str.add("?");name.add("module");
 		}
-
-
-
+		
 		for (int i = 0; i < str.size(); i++) {
-
 			if (i==str.size()-1) {
 				bf11.append(str.get(i));
 			}else {
 				bf11.append(str.get(i)+",");
 			}
-
-
 		}
-
 		for (int i = 0; i < name.size(); i++) {
-
 			if (i==name.size()-1) {
 				na.append(name.get(i));
 			}else {
 				na.append(name.get(i)+",");
 			}
-
-
 		}
-
-
-
-
 		Object[] params=new Object[list.size()];
-
 		for (int i = 0; i < params.length; i++) {
 			params[i]=list.get(i);
-
-
-
-
-
 		}
-
-		System.err.println(t.getImg()+"------------------------------------------------------------------");
-
-
 		String sql = "INSERT INTO `easybuy_news`("+na.toString()+")VALUES("+bf11.toString()+")";
-
-		//String sql="update easybuy_news set "+bf11.toString()+" where id=?";
-
-		//System.err.println(t.getContent()+"+++++++++++++++++++++++++++++++++++++");
-		//Object[] params = { t.getTitle(), t.getContent(), t.getCreateTime(), t.getImg() };
-
 		int rowNum = 0;
-
 		rowNum = exceuteUpdate(sql, params);
-
 		return rowNum;
 	}
 
 
 	@Override
 	public int delete(Serializable id) {
+		
 		String sql = "DELETE FROM easybuy_news WHERE id=? ";
-		Object[] parmas = { id };
-
+//		Object[] parmas = { id };
 		int rowNum = 0;
-
-		rowNum = exceuteUpdate(sql, parmas);
-
+		rowNum = exceuteUpdate(sql, id);
 		return rowNum;
 
 	}
@@ -237,11 +207,7 @@ public class NewsDaolmpl extends JdbcUtil implements NewsDao {
 
 
 	@Override
-	public List<News> findAlls(int pageNum, int pageSize) {
-
-		if (pageNum!=0) {//因为前端的分页符没下标1的，跳了加1,===>0,2,3,4,5,6		
-			pageNum=pageNum*6-6;//做处理把2转换为1
-		}
+	public List<News> findAlls(int pageNum, int pageSize) {		
 		
 		String sql = "select * from easybuy_news limit ?,?";
 
@@ -267,16 +233,16 @@ public class NewsDaolmpl extends JdbcUtil implements NewsDao {
 
 	@Override
 	public int getTotalCount() {
-		//		String sql = "select count(*) as 'count' from easybuy_News";
+		
+		//访问数据库的sql
 		String sql = "select count(*) as 'count' from easybuy_News";
 		int count=0;
-		System.err.println(count+"=====================hah");
 		try {
+			//因为这里生产一个伪表，列名为'count'
 			result= exceuteQuery(sql);
 
 			if (result.next()) {
 				count = result.getInt("count");
-				System.err.println(count+"=====================hah");
 			}
 
 		} catch (SQLException e) {

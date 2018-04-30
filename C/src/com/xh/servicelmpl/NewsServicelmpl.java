@@ -17,16 +17,24 @@ import com.xh.util.PageInfo;
 import com.xh.util.ResultSet_Util;
 
 
+/**
+ * 
+ * @author LSZ
+ *
+ * 非宁静无以致远！
+ * 2018-4-30上午10:39:40  这个是逻辑层
+ *
+ */
 
 
-
-public class NewsServletlmpl implements NewsServiceDao {
+public class NewsServicelmpl implements NewsServiceDao {
 	
 	
 	
 	
-	private static Logger logger=Logger.getLogger(NewsServletlmpl.class);
+	private static Logger logger=Logger.getLogger(NewsServicelmpl.class);
 	
+	//
 	NewsDao news=new NewsDaolmpl();
 	
 
@@ -92,11 +100,12 @@ public class NewsServletlmpl implements NewsServiceDao {
 		
 		 PageInfo<News> pageInfo=new PageInfo<>();
 		 
-		 
+		 if (pageNum!=0) {//因为前端的分页符没下标1的，跳了加1,===>0,2,3,4,5,6		
+				pageNum=pageNum*6-6;//做处理把2转换为1
+			}		 
 		 //获取分页后的新闻记者集合，并赋值给 PageInfo<News>，对象  当前页pageNum，显示的条数pageSize
 		 pageInfo.setList(news.findAlls(pageNum, pageSize));
 		 
-		// TODO Auto-generated method stub
 		return pageInfo;
 	}
 

@@ -91,15 +91,15 @@
 		load(0); //默认初始化,pageNum为0
 		function load(pageNum) {
 
-			$
-					.ajax({
+			
+					$.ajax({
 						url : "list", //需要提交的服务器地址
 						type : "post", //请求的方式
 						data : {
 							"pageNum" : pageNum
 						}, //传递给服务器的参数
-						success : function(data) { //回调函数
-							var data = $.parseJSON(data);//从数据库获得的json对象，已经包含查询回来的数据
+						success : function(data) { //servlet返回到数据[writer.print(json); ]
+							var data = $.parseJSON(data);//从数据库获得数据经过[servlet,逻辑,jdbc,工具类，获得数据]的json对象，已经包含查询回来的数据
 							//清空数据不然会出现迭代
 							$("#list-content").html('');
 							//追加数据  data.list需要遍历的集合  list必须是pageInfo中的属性名

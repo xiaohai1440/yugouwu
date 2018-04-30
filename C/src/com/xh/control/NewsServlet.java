@@ -28,7 +28,7 @@ import com.xh.bean.News;
 import com.xh.dao.NewsDao;
 import com.xh.dao.lmpl.NewsDaolmpl;
 import com.xh.service.NewsServiceDao;
-import com.xh.servicelmpl.NewsServletlmpl;
+import com.xh.servicelmpl.NewsServicelmpl;
 
 
 
@@ -44,7 +44,7 @@ public class NewsServlet extends HttpServlet {
 	//private static Logger logger=Logger.getLogger(clazz);
 
 
-	NewsServiceDao service_news=new NewsServletlmpl();
+	NewsServiceDao service_news=new NewsServicelmpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
