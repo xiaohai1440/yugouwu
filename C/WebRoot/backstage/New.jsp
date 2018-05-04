@@ -97,7 +97,10 @@
 						type : "post", //请求的方式
 						data : {
 							"pageNum" : pageNum
-						}, //传递给服务器的参数
+						}, //传递给服务器的参数,可以发送多个参数、
+						beforeSend:function(){//提示的话
+						alert("请求正在发送！");
+						},
 						success : function(data) { //servlet返回到数据[writer.print(json); ]
 							var data = $.parseJSON(data);//从数据库获得数据经过[servlet,逻辑,jdbc,工具类，获得数据]的json对象，已经包含查询回来的数据
 							//清空数据不然会出现迭代
@@ -147,7 +150,7 @@
 												//在表格中拼接                      
 												$("#list-content")
 														.append(
-																"<tr><td><input type='checkbox' value='1' name=''></td>"
+																"<tr><td><input type='checkbox' value='1' name='name'></td>"
 																		+ "<td>"
 																		+ news.id
 																		+ "</td>"

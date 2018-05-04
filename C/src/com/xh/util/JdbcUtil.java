@@ -7,6 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 
 /**
  * 
@@ -31,7 +36,29 @@ public class JdbcUtil {
 	 * 获取连接数据库对象 Connection 对象
 	 */
 	public static  boolean getConnection(){
+		
+		
+		
+		
+		try {
+			//初始换上下文对象tomcat容器
+			Context initialContext = new InitialContext();
+		    //通过数据源中的name属性获取指定的数据源>>根据context.xml:数据源的地方
+			DataSource data = (DataSource)initialContext.lookup("java:comp/env/jdbc/news");
+			//在连接池获得空闲连接数据库对象
+			conn = data.getConnection();
 
+		} catch (NamingException e) {
+			e.printStackTrace();
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	
+		
+/**
 		try {
 
 			//加载驱动
@@ -50,7 +77,7 @@ public class JdbcUtil {
 			e.printStackTrace();
 
 
-		}
+		}*/
 		return true;	
 
 	}
@@ -140,7 +167,7 @@ public class JdbcUtil {
 	 */
 	public static ResultSet exceuteQuery(String preparedsql,Object...param) throws SQLException{
 
-		if (getConnection()) {
+		if (getConnection()) {//判断是否连接
 
 			//try {
 				//获取发送SQL语句到数据库的

@@ -23,7 +23,7 @@ public class UserDaoImpl extends JdbcUtil implements UserDao  {
 	@Override
 	public int add(User user) {
 
-		String sql="insert into cloudshopping_user(loginName,password,email,mobile) values(?,?,?,?)";
+		String sql="insert into easybuy_user(loginName,password,email,mobile) values(?,?,?,?)";
 
 		Object [] param={user.getLoginName(),user.getPassword(),user.getEmail(),user.getMobile()};
 
@@ -37,7 +37,7 @@ public class UserDaoImpl extends JdbcUtil implements UserDao  {
 	@Override
 	public int delete(Serializable id) {
 		/*删除用户*/
-		String sql="delete from cloudshopping_user where id=?";
+		String sql="delete from easybuy_user where id=?";
 
 		int update = exceuteUpdate(sql,id);
 
@@ -102,7 +102,7 @@ public class UserDaoImpl extends JdbcUtil implements UserDao  {
 
 		List<User> list=new ArrayList();
 
-		String sql="select * from cloudshopping_user";
+		String sql="select * from easybuy_user";
 
 		try {
 			
@@ -139,7 +139,7 @@ public class UserDaoImpl extends JdbcUtil implements UserDao  {
 	@Override
 	public User login(String userName,String passWord) {
 
-		String sql="Select * From cloudshopping_user where (loginName=? or email=? or mobile=?) and passWord=?";
+		String sql="Select * From easybuy_user where (loginName=? or email=? or mobile=?) and passWord=?";
 		Object [] param={userName,userName,userName,passWord};
 		User user =null;
 
@@ -166,7 +166,7 @@ public class UserDaoImpl extends JdbcUtil implements UserDao  {
 	@Override
 	public User select_Id(Serializable id) {
 
-		String sql = "select * from cloudshopping_user where id=?";
+		String sql = "select * from easybuy_user where id=?";
 		// 给参数赋值
 		Object[] params = { id };
 		User user = null;
@@ -183,7 +183,7 @@ public class UserDaoImpl extends JdbcUtil implements UserDao  {
 
 	@Override
 	public User loginPwd(String userName) {
-		String sql="Select * From cloudshopping_user where loginName=? or email=? or mobile=?";
+		String sql="Select * From easybuy_user where loginName=? or email=? or mobile=?";
 		Object [] param={userName,userName,userName};
 		User user =null;
 
@@ -199,7 +199,7 @@ public class UserDaoImpl extends JdbcUtil implements UserDao  {
 			e.printStackTrace();
 		}finally{
 			//关闭资源
-			closeAss(conn, pre, result);
+			//closeAss(conn, pre, result);
 
 		}
 

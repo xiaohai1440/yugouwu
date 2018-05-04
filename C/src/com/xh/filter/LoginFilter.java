@@ -48,12 +48,13 @@ public class LoginFilter implements Filter {
 
 		/*|| path.contains(".js")|| (path.contains(".jsp")&&!path.contains("index.jsp"))|| path.contains(".css")*/
 
-
+		System.err.println("00000000044000000000"+user);	
 		/*这里如果是后台独立一个页面就不需要！||path.contains("login.jsp")  //判断有没有登录成功！记得放行页面！*/
 		if(user!=null&&user.getType()==1){//取巧的方式，前后台是一个登录页面
-
+			System.err.println("00000000044000000000");	
 			//放行
 			filter.doFilter(request, response);
+			//resq.sendRedirect("../index.jsp");
 
 		}else {
 

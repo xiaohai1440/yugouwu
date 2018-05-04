@@ -18,12 +18,12 @@
 	href="img/icon/favicon.ico">
 <link rel="stylesheet" type="text/css" href="css/base.css">
 <link rel="stylesheet" type="text/css" href="css/home.css">
-<script type="text/javascript" src="js/jquery.js"></script>
+ <script type="text/javascript" src="js/jquery.js"></script> 
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 <script type="text/javascript">
 	var intDiff = parseInt(90000);//倒计时总秒数量
-
+    var $jq=jQuery.noConflict(true);
 	function timer(intDiff) {
 		window.setInterval(function() {
 			var day = 0, hour = 0, minute = 0, second = 0;//时间默认值
@@ -39,10 +39,10 @@
 				minute = '0' + minute;
 			if (second <= 9)
 				second = '0' + second;
-			$('#day_show').html(day + "天");
-			$('#hour_show').html('<s id="h"></s>' + hour + '时');
-			$('#minute_show').html('<s></s>' + minute + '分');
-			$('#second_show').html('<s></s>' + second + '秒');
+			/* $jq('#day_show').jsp(day + "天");
+			$jq('#hour_show').jsp('<s id="h"></s>' + hour + '时');
+			$jq('#minute_show').jsp('<s></s>' + minute + '分');
+			$jq('#second_show').jsp('<s></s>' + second + '秒'); */
 			intDiff--;
 		}, 1000);
 	}
@@ -79,6 +79,8 @@
 				marginLeft : "0px"
 			}, "slow")
 		});
+		
+		
 	});
 	
 	$(document).ready(function () {
@@ -93,6 +95,16 @@
     }); 
 	
 	
+/* 					
+	$(function(){
+    //默认初始化
+    /*点击查询的触发事件*/
+  
+ 
+    
+       
+      // });
+   
 	
 	
 </script>
@@ -136,7 +148,7 @@
 
 					<c:choose>
 						<c:when test="${not empty sessionScope.user}">
-					您好！，<a href="#" class="menu-btn"><c:out
+					您好: <a href="#" class="menu-btn"><c:out
 									value="${sessionScope.user.userName}"></c:out> </a>
 							<ul class="topDown" style="display:none">
 								<!-- style="display:none" -->
@@ -161,19 +173,16 @@
 
 				</div>
 
-
-
-
-
-
-
-
-
-
-
-
 				<div class="fr pc-header-list top-nav">
 					<ul>
+												
+                <c:if test="${sessionScope.user.type>0}">
+                 <li><a href="backstage/index.jsp">后台管理！</a>				
+		     	</li>
+			  </c:if>
+					
+					
+					
 						<li>
 							<div class="nav">
 								<i class="pc-top-icon"></i><a href="#">我的订单</a>
@@ -214,6 +223,10 @@
 									</dd>
 								</dl>
 							</div></li>
+							
+			
+							
+							
 						<li><a href="#">我的云购</a>
 						</li>
 						<li><a href="#">我的收藏</a>
@@ -222,8 +235,8 @@
 						</li>
 						<li><a href="#">客户服务</a>
 						</li>
-						<li><a href="#">帮助中心</a>
-						</li>
+						<!-- <li><a href="#">帮助中心</a>
+						</li> -->
 					</ul>
 				</div>
 			</div>
@@ -231,7 +244,7 @@
 		<div class="pc-header-logo clearfix">
 			<div class="pc-fl-logo fl">
 				<h1>
-					<a href="index.html"></a>
+					<a href="index.jsp"></a>
 				</h1>
 			</div>
 			<div class="head-form fl">
@@ -256,32 +269,67 @@
 			<!-- 导航   start  -->
 			<div class="yNavIndex">
 				<div class="pullDown">
+				
+				
 					<h2 class="pullDownTitle">
 						<i class="icon-class"></i>所有商品分类
 					</h2>
+					
 					<ul class="pullDownList">
-						<li class=""><i class="list-icon-1"></i> <a href=""
-							target="_blank">手机</a> /<a href="" target="_blank">数码</a> /<a
-							href="" target="_blank">电脑办公</a> <span></span></li>
+					
+					
+					
+					
+					
+				
+						<!-- <li class="">
+						
+						<i class="list-icon-1"></i> 
+						
+						
+						<a href=""target="_blank">手机</a> /
+						<a href="" target="_blank">数码</a> /
+						<a href="" target="_blank">电脑办公</a> 
+						
+						
+						
+						<span></span></li>
+							
+							
+							
 						<li><i class="list-icon-2"></i> <a href="" target="_blank">女装</a>
 							/<a href="" target="_blank">内衣</a> <span></span></li>
+							
+							
+							
 						<li><i class="list-icon-2"></i> <a href="" target="_blank">男装</a>
 							/<a href="" target="_blank">运动户外</a> <span></span></li>
+							
+							
+								<li><i class="list-icon-1"></i> <a href="" target="_blank">男装</a>
+							/<a href="" target="_blank">运动5555户外</a> <span></span></li>
+							
+							
 						<li><i class="list-icon-2"></i> <a href="" target="_blank">女鞋</a>
 							/<a href="" target="_blank">男鞋</a> /<a href="" target="_blank">箱包</a>
 							<span></span></li>
 						<li><i class="list-icon-2"></i> <a href="" target="_blank">化妆品</a>
 							/<a href="" target="_blank">个人护理</a> <span></span></li>
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">母婴玩具</a>
+						<li><i class="list-icon-2"></i> <a href="" target="_blank">母婴玩具</a> 
 							<span></span></li>
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">零食</a>
+							
+					 	<li><i class="list-icon-2"></i> <a href="" target="_blank">零食</a>
 							/<a href="" target="_blank">进口食品</a> /<a href="" target="_blank">酒</a>
 							<span></span></li>
+							
+							<li><i class="list-icon-2"></i> <a href="" target="_blank">零食44444444</a>
+							/<a href="" target="_blank">进口食品44444444444444</a> <span></span></li>	
+							
 						<li><i class="list-icon-2"></i> <a href="" target="_blank">大家电</a>
 							/<a href="" target="_blank">生活电器</a> <span></span></li>
 						<li><i class="list-icon-2"></i> <a href="" target="_blank">家具建材</a>
-							<span></span></li>
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">珠宝饰品</a>
+							<span></span></li> -->
+						<!-- <li><i class="list-icon-2"></i> <a href="" target="_blank">珠宝饰品</a>
 							/<a href="" target="_blank">腕表眼镜</a> <span></span></li>
 						<li><i class="list-icon-2"></i> <a href="" target="_blank">汽车</a>
 							/<a href="" target="_blank">配件</a> /<a href="" target="_blank">用品</a>
@@ -294,11 +342,97 @@
 						<li><i class="list-icon-2"></i> <a href="" target="_blank">厨具</a>
 							/<a href="" target="_blank">收纳</a> /<a href="" target="_blank">宠物</a>
 							<span></span></li>
+							
 						<li><i class="list-icon-2"></i> <a href="" target="_blank">图书音像</a>
-							<span></span></li>
+							<span></span></li>  -->
 					</ul>
+					
+					
+					
+					
 					<!-- 下拉详细列表具体分类 -->
 					<div class="yMenuListCon">
+					
+					
+					
+					<!-- 	 <div class="yMenuListConin">
+						
+						
+							<div class="yMenuLCinList">
+							
+								<h3>
+									<a href="" class="yListName">精品男装</a><a href=""
+										class="yListMore">更多 ></a>
+								</h3>
+								<p>
+									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
+										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
+										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
+										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
+										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
+										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
+								</p>
+							</div>
+							
+							
+							
+							<div class="yMenuLCinList">
+								<h3>
+									<a href="" class="yListName">精品男装</a><a href=""
+										class="yListMore">更多 ></a>
+								</h3>
+								<p>
+									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
+										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
+										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
+										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
+										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
+										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
+								</p>
+							</div>
+							
+							
+							
+							<div class="yMenuLCinList">
+								<h3>
+									<a href="" class="yListName">精品男装</a><a href=""
+										class="yListMore">更多 ></a>
+								</h3>
+								<p>
+									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
+										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
+										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
+										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
+										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
+										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
+								</p>
+							</div>
+						</div>
+						
+						
+						
+						
+						
+						
+
+						<div class="yMenuListConin">
+							
+							<div class="yMenuLCinList">
+								<h3>
+									<a href="" class="yListName">精品男装</a><a href=""
+										class="yListMore">更多 ></a>
+								</h3>
+								<p>
+									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
+										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
+										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
+										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
+										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
+										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
+								</p>
+							</div>
+						</div>
+
 						<div class="yMenuListConin">
 							<div class="yMenuLCinList">
 								<h3>
@@ -314,6 +448,9 @@
 										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
 								</p>
 							</div>
+						</div>
+
+						<div class="yMenuListConin">
 							<div class="yMenuLCinList">
 								<h3>
 									<a href="" class="yListName">精品男装</a><a href=""
@@ -328,6 +465,28 @@
 										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
 								</p>
 							</div>
+						</div>
+						
+						 -->
+
+						<!-- <div class="yMenuListConin">
+							<div class="yMenuLCinList">
+								<h3>
+									<a href="" class="yListName">精品男装1</a><a href=""
+										class="yListMore">更多1 ></a>
+								</h3>
+								<p>
+									<a href="" class="ecolor610">大牌上新1</a> <a href="">商场同款</a> <a
+										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
+										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
+										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
+										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
+										href="">加厚羽绒1 </a> <a href="">高帮鞋</a>
+								</p>
+							</div>
+						</div>
+
+						<div class="yMenuListConin">
 							<div class="yMenuLCinList">
 								<h3>
 									<a href="" class="yListName">精品男装</a><a href=""
@@ -340,6 +499,41 @@
 										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
 										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
 										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
+								</p>
+							</div>
+						</div>
+
+						<div class="yMenuListConin">
+							<div class="yMenuLCinList">
+								<h3>
+									<a href="" class="yListName">精品男装</a><a href=""
+										class="yListMore">更多 ></a>
+								</h3>
+								<p>
+									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
+										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
+										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
+										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
+										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
+										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
+								</p>
+							</div>
+						</div>
+
+						<div class="yMenuListConin">
+							<div class="yMenuLCinList">
+								<h3>
+									<a href="" class="yListName">精品男装</a><a href=""
+										class="yListMore">更多 ></a>
+								</h3>
+								<p>
+									<a href="" class="ecolor610">大牌上新</a> 
+									<a href="">商场同款</a>
+									 <a href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> 
+										<a href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> 
+										<a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> 
+										<a href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a>
+										 <a href="">加厚羽绒 </a> <a href="">高帮鞋</a>
 								</p>
 							</div>
 						</div>
@@ -445,8 +639,8 @@
 								</p>
 							</div>
 						</div>
-
-						<div class="yMenuListConin">
+ -->
+						<!-- <div class="yMenuListConin">
 							<div class="yMenuLCinList">
 								<h3>
 									<a href="" class="yListName">精品男装</a><a href=""
@@ -462,129 +656,18 @@
 								</p>
 							</div>
 						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
+ -->
+				
 					</div>
 
+				
+				
+				
+				
+				
 				</div>
+				
+				
 				<ul class="yMenuIndex">
 					<li><a href="" target="_blank">首页</a>
 					</li>
@@ -608,6 +691,8 @@
 
 		<!-- banner  -->
 		<div class="yBanner">
+		
+		
 			<div class="yBannerList">
 				<div class="yBannerListIn">
 					<a href=""><img class="ymainBanner" src="images/banner1.jpg"
@@ -685,7 +770,7 @@
 											<ul class="flder">
 												<li index="0">
 													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="page.html" target="_blank">
+														<a class="saleDeal" href="page.jsp" target="_blank">
 															<div class="dealCon">
 																<img class="dealImg" src="images/xlqg1.jpg" alt="">
 																<div class="zt2Qrcode overlay">
@@ -1567,5 +1652,11 @@
 			$(this).find(".nav a").removeClass("hover");
 		})
 	</script>
+	
+	
+
+
+
+</script>
 </body>
 </html>

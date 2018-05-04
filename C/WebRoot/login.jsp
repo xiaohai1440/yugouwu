@@ -15,48 +15,11 @@
 	href="img/icon/favicon.ico">
 <link rel="stylesheet" type="text/css" href="css/base.css">
 <link rel="stylesheet" type="text/css" href="css/home.css">
-<script src="js/jquery-1.12.4.js"></script>
-<script src="js/jquery.slideunlock.js"></script>
+<script src="js/jquery-1.12.4.js" type="text/javascript"></script>
+<script src="js/jquery.slideunlock.js" type="text/javascript"></script>
 <script src="js/jquery.validate.js" type="text/javascript"></script>
-<!-- <script type="text/javascript" src="js/login.js"></script> -->
-<script type="text/javascript" >
+<script type="text/javascript" src="js/login.js"></script>
 
-
-$(function () {
-	 
-	 
-    	       $("#form").validate({
-    	       
-    	           rules:{//验证规则
-    	              user:{//user是对应的form表单  input标签的name值
-    	                required:true
-    	              },
-    	              pwd:{
-    	                required:true,
-    	                minlength:6,
-    	                maxlength:60
-    	              }
-    	           },
-    	           messages:{//提示信息或者是要求 
-    	        	   user:{
-    	                   required:"用户名不能为空！"
-    	               },
-    	               pwd:{
-    	                   required:"密码不能为空",
-    	                   minlength:"密码长度不能小于6",
-    	                   maxlength:"密码长度不能大于60"
-    	               }
-    	           },
-    	           onfocusout:function (e) {//文本框失去焦点就验证
-    	               // e:相当于下标，即this.index
-    	               $(e).valid();
-    	           }
-    	       });
-    	       
-    	    
-    	   });
-
-</script>
 <style>
 /* 表示提示字的颜色 */
 .error { /*   display:block;
@@ -84,7 +47,7 @@ $(function () {
 					<div class="pc-login-title">
 						<h2>用户登录</h2>
 					</div>
-<%-- 
+					<%-- 
 			<% 
 					
 				 //获取cookie对象
@@ -111,9 +74,9 @@ $(function () {
  					 }
  					} 
  					 
- 				%>	 --%> 
- 				
- 				<script type="text/javascript">
+ 				%>	 --%>
+
+					<script type="text/javascript">
  					
  					$(function(){
  					
@@ -126,20 +89,20 @@ $(function () {
  					});
 		
  					</script>
- 				
- 					
- 					
-				
+
+
+
+
 					<form action="UserServlet?method=login" id="form" method="post">
 						<div class="pc-sign">
 							<input type="text" name="user" id="user" placeholder="用户名/邮箱/手机号">
 						</div>
 						<div class="pc-sign">
-							<input type="password" name="pwd" id="pwd"  placeholder="请输入您的密码">
+							<input type="password" name="pwd" id="pwd" placeholder="请输入您的密码">
 						</div>
 
 						<div class="pc-jizhu">
-							<input type="checkbox" name="jizhu" checked >记住密码
+							<input type="checkbox" name="jizhu" checked>记住密码
 						</div>
 
 
@@ -191,18 +154,24 @@ $(function () {
 	</footer>
 
 	<script>
+	
+	
+	$(document).keydown(function (event) {//这个参数是键盘的对象
+       //alert(event.keyCode)
+      if (event.keyCode == "13") {//按回车键
+         if($("#form").valid()){     
+         $("#demo").css({"display":"block"});    
+       }   
+  	}
+   });
 							
 							
 	function clicks(){
-       
-       
+             
        if($("#form").valid()){
        
          $("#demo").css({"display":"block"});    
-       }
-       
-       
-       
+       }   
     }
         
     $(function () {

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 import com.xh.bean.User;
 import com.xh.service.UserService;
@@ -21,6 +23,8 @@ import com.xh.util.Md5Encrypt;
 
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
+	
+	private static Logger logger=Logger.getLogger(UserServlet.class);
 	
 	UserService userService1 = new UserServiceImpl();	
 
@@ -65,7 +69,7 @@ public class UserServlet extends HttpServlet {
 		
 		case "uname":
 			
-			
+			//这里是用户名查询是否相同
 
 			String name = req.getParameter("username");
 			
@@ -73,7 +77,7 @@ public class UserServlet extends HttpServlet {
 			
 			
 			//给ajax响应
-			  if(login1.getLoginName()!=null){
+			  if(login1!=null&&login1.getLoginName()!=null){
 		            resp.getWriter().print(false);//返回数据到请求页面
 		        }else{
 		        	//resp.getWriter().write("用户主");//可以是html页面
@@ -91,10 +95,46 @@ public class UserServlet extends HttpServlet {
 			user2.setLoginName(req.getParameter("userName"));				
 			user2.setPassword(show(req.getParameter("passWord")));	
 			user2.setEmail(req.getParameter("email"));			
-			user2.setMobile(req.getParameter("phone"));				
-			userService1.add(user2);
+			user2.setMobile(req.getParameter("phone"));	
+			System.err.println("============================");
+			if (userService1.add(user2)) {
+				
+				
+									
+				
+				resp.setContentType("text/html;charset=UTF-8");
+                PrintWriter out = resp.getWriter();
+                out.print("<meta   http-equiv='Content-Type'   content='text/html;   charset=UTF-8'>");
+                out.print("<script>");
+                out.print("alert('用户添加成功!');");
+                out.print("window.location.href='login.jsp'");
+                out.print("</script>");
+                out.flush();
+                out.close();
+//				resp.sendRedirect("login.jsp");	
+                
+                
+				
+			}else {
+				
+				
+				resp.setContentType("text/html;charset=UTF-8");
+                PrintWriter out = resp.getWriter();
+                out.print("<meta   http-equiv='Content-Type'   content='text/html;   charset=UTF-8'>");
+                out.print("<script>");
+                out.print("alert('用户添加成功!');");
+                out.print("window.location.href='register.jsp'");
+                out.print("</script>");
+                out.flush();
+                out.close();
+				
+				
+				
+				
+				
+			}
 
-			resp.sendRedirect("login.jsp");		
+				
 
 
 			break;
@@ -109,7 +149,7 @@ public class UserServlet extends HttpServlet {
 					
 			User login = userService1.loginPwd(user);	
 
-			if (login.getPassword()!=null) {//判断用户的有没有		
+			if (login!=null) {//判断用户的有没有		
 				
 				try {
 
@@ -136,17 +176,24 @@ public class UserServlet extends HttpServlet {
 						}	
 						//
 						req.getSession().setAttribute("user", login);
+						logger.debug("登录成功！");
 						
-						if (login.getType()==0) {
+						/*if (login.getType()==0) {
 							//普通用户页面
 							resp.sendRedirect("index.jsp");
+							
 						}else{
 							//后台管理员登录页面
 						    resp.sendRedirect("backstage/index.jsp");
 						}
+*/
+						resp.sendRedirect("index.jsp");
 
+					}else{
 						
-
+						logger.debug("登录失败！");
+						resp.sendRedirect("login.jsp");			
+						
 					}
 				} catch (NoSuchAlgorithmException e) {
 					e.printStackTrace();
@@ -155,7 +202,7 @@ public class UserServlet extends HttpServlet {
 
 			}else {
 				//	PrintWriter out = resp.getWriter();
-
+				logger.debug("登录失败！");
 				resp.sendRedirect("login.jsp");			
 
 			}

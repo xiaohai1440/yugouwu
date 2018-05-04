@@ -15,10 +15,10 @@ import net.spy.memcached.MemcachedClient;
 
 
 public class UserServiceImpl implements UserService{
-	
-	
+
+
 	private static Logger logger=Logger.getLogger(UserServiceImpl.class);
-	
+
 
 	UserDao userDao=new UserDaoImpl();
 
@@ -26,20 +26,21 @@ public class UserServiceImpl implements UserService{
 	public boolean add(User t) {
 		// TODO Auto-generated method stub
 		int add = userDao.add(t);
-		
-		
+
+
 
 		if (add>0) {
-			
-			
+
+
 			logger.debug("新增成功！");
+			return true;
 
 		}else {
-			
+
 			logger.debug("新增失败！");
-			
+			return false;
 		}
-		return false;
+		
 
 
 
@@ -112,25 +113,33 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User login(String userName, String passWord) {
-		
+
 		User login = userDao.login(userName, passWord);
-		
-		if (login.getLoginName()!=null) {
-			
+
+		if (login!=null&&login.getLoginName()!=null) {
+
 			logger.debug("登录 成功");
 			return login;
 		}else {
 			logger.debug("登录失败！");
 			return null;
 		}
-	
+
 	}
 
 	@Override
 	public User loginPwd(String userName) {
+
 		User login = userDao.loginPwd(userName);
-		// TODO Auto-generated method stub
-		return login;
+
+		if (login!=null&&login.getLoginName()!=null) {
+
+			//logger.debug("登录 成功");
+			return login;
+		}else {
+			//logger.debug("登录失败！");
+			return null;
+		}
 	}
 
 

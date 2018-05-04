@@ -1,3 +1,6 @@
+
+<%@ page language="java" import="java.util.*,com.xh.bean.*"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,10 +37,10 @@
                 }
                 if (minute <= 9) minute = '0' + minute;
                 if (second <= 9) second = '0' + second;
-                $('#day_show').html(day+"天");
-                $('#hour_show').html('<s id="h"></s>'+hour+'时');
-                $('#minute_show').html('<s></s>'+minute+'分');
-                $('#second_show').html('<s></s>'+second+'秒');
+                $('#day_show').jsp(day+"天");
+                $('#hour_show').jsp('<s id="h"></s>'+hour+'时');
+                $('#minute_show').jsp('<s></s>'+minute+'分');
+                $('#second_show').jsp('<s></s>'+second+'秒');
                 intDiff--;
             }, 1000);
         }
@@ -122,7 +125,7 @@
 <header id="pc-header">
 	<div class="pc-header-nav">
 		<div class="pc-header-con">
-			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="login.html" target="_blank">请登录</a> <a href="register.html" target="_blank"> 免费注册</a></div>
+			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="login.jsp" target="_blank">请登录</a> <a href="register.jsp" target="_blank"> 免费注册</a></div>
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
@@ -159,7 +162,7 @@
 	<div class="pc-header-logo clearfix">
 		<div class="pc-fl-logo fl">
 			<h1>
-				<a href="index.html"></a>
+				<a href="index.jsp"></a>
 			</h1>
 		</div>
 		<div class="head-form fl">

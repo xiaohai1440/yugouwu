@@ -119,7 +119,7 @@ public class NewsServlet extends HttpServlet {
 		try {
 
 
-		/*	for (News news : newsList) {
+			/*	for (News news : newsList) {
 				System.err.println(news);
 			}*/
 			// 转发到主页面
@@ -134,49 +134,49 @@ public class NewsServlet extends HttpServlet {
 
 	// 修改新闻
 	private void updateNews(HttpServletRequest req, HttpServletResponse resp) {
-		
-		
-		
-News news=add_update(req);
-		
+
+
+
+		News news=add_update(req);
+
 		String img = service_news.select_Id(news.getId()).getImg();
 		boolean	flag = service_news.updata(news);
 
 
-			if (flag) {
-		
-					File file=new File("F:\\LSL\\Tomcat\\apache-tomcat-9.0.6\\webapps\\C\\upload\\"+img);
-					if (file!=null&&file.isFile()) {
-						file.delete();
-					}				
+		if (flag) {
 
-				try {
-					
-					resp.sendRedirect("NewsServlet?method=getAllNews");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}//跳转查询所有
-			} else {
-			
-				
-				File file=new File("F:\\LSL\\Tomcat\\apache-tomcat-9.0.6\\webapps\\C\\upload\\"+news.getImg());
-				if (file!=null&&file.isFile()) {
-					file.delete();
+			File file=new File("F:\\LSL\\Tomcat\\apache-tomcat-9.0.6\\webapps\\C\\upload\\"+img);
+			if (file!=null&&file.isFile()) {
+				file.delete();
+			}				
 
-				}	
-				try {
-					resp.sendRedirect("NewsServlet?method=findById&id="+news.getId());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}//
+			try {
+
+				resp.sendRedirect("NewsServlet?method=getAllNews");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}//跳转查询所有
+		} else {
+
+
+			File file=new File("F:\\LSL\\Tomcat\\apache-tomcat-9.0.6\\webapps\\C\\upload\\"+news.getImg());
+			if (file!=null&&file.isFile()) {
+				file.delete();
+
 			}	
+			try {
+				resp.sendRedirect("NewsServlet?method=findById&id="+news.getId());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}//
+		}	
 
-		
-		
 
-/**
+
+
+		/**
 
 		// 创建News对象
 		News news = new News();
@@ -273,7 +273,7 @@ News news=add_update(req);
 							//System.out.println(saveFile.getAbsolutePath()+"==============="+fileName);
 
 							//news.setImg(uploadPath+url);
-							
+
 							news.setImg(url);
 							//news.setImg(uploadPath + "\\" +System.currentTimeMillis()+ fileName);
 
@@ -292,25 +292,33 @@ News news=add_update(req);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 			}
-*/
-		
-		
-		
+		 */
+
+
+
 
 	}
 
 	private void delNews(HttpServletRequest req, HttpServletResponse resp) {
 
-		
+
 		boolean flag = service_news.delete(req.getParameter("id"));
 		if (flag) {
+			
 			System.out.println("删除成功");
 		} else {
 			System.out.println("删除失败");
 		}
-	/*	try {
+		
+		try {
+			resp.sendRedirect("NewsServlet?method=getAllNews");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*	try {
 			resp.sendRedirect("NewsServlet?method=getAllNews");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -320,40 +328,28 @@ News news=add_update(req);
 
 
 	private void add_news(HttpServletRequest req, HttpServletResponse resp) {
-		
-		
-		
-		
-		
+
+
+
+
+
 		News news = add_update(req);
+
 		boolean add = service_news.add(news);
 
 		if (add) {
-			System.out.println("新增成功！");
-
-			//findAllNews(req, resp);
-
 
 		} else {
-			
+
 			File file=new File("F:\\LSL\\Tomcat\\apache-tomcat-9.0.6\\webapps\\C\\upload\\"+news.getImg());
 			if (file!=null&&file.isFile()) {
-
+				
 				file.delete();
-
 			}	
 			System.out.println("新增失败！");
-			
-			/*
-					try {
-						resp.sendRedirect("NewsServlet?method=addNews");
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
-			//add_news(req, resp);
+
 		}
-		
+
 
 	}
 
@@ -375,27 +371,20 @@ News news=add_update(req);
 				while (its.hasNext()) {
 					FileItem item = its.next();
 					// 判断表单元素是什么类型
-
-
 					if (item.isFormField()) { // 证明是普通的元素
 						String fieldName = item.getFieldName();// title context
 						// createTime
 						switch (fieldName) {
-						
-						
+
 						case "id":
 
 							news.setId(Integer.valueOf(item.getString("UTF-8")));	
 
 							break;
-						
-						
-
 						case "createTime":
 
 							/*news.setCreateTime(new SimpleDateFormat("dd/MM/yy")
 							.parse(item.getString("UTF-8")));	*/
-
 							/*news.setCreateTime(req.getParameter("createTime"));*/
 
 							break;
@@ -404,11 +393,9 @@ News news=add_update(req);
 						case "module":
 
 							news.setModule(item.getString("UTF-8"));	
-
 							/*news.setCreateTime(req.getParameter("createTime"));*/
+							
 							break;
-
-
 						case "title":
 							news.setTitle(item.getString("UTF-8"));
 							break;
@@ -428,41 +415,26 @@ News news=add_update(req);
 						if (!file.exists()) {//不存在就创建
 							file.mkdirs();//多级文件创建
 						}
-
-
 						String fileName = item.getName();// 获取上传文件的名称
 
 						//fileName = new String(fileName.getBytes(), "utf-8");// 解决中文乱码可以去除
 
-
-
 						if (!"".equals(fileName) && null != fileName) {//判断不是为空的值，为空就不写入数据库
-
-
 							long currentTimeMillis = System.currentTimeMillis();
 							// System.currentTimeMillis();防止文件被覆盖
-
-
-							//							SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddhh:mm:ss");
-							//							String format = sdf.format(new Date());
+							//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddhh:mm:ss");
+							//String format = sdf.format(new Date());
 							//System.out.println("format()===》把日期转换成String类型的数据：" + sdf.format(new Date()));
-
-
-
 							//url=new StringBuffer(format+currentTimeMillis+fileName.substring(fileName.lastIndexOf(".")));
 
+							//毫秒+截取图片的后缀.png
 							String url=currentTimeMillis+fileName.substring(fileName.lastIndexOf("."));
-							
-							System.err.println(url+"======================da");
+							//
 							File saveFile = new File(uploadPath,url);
-
+							//写入文件里
 							item.write(saveFile);
-
-
-
 							//取得对象的图片路径
 							//System.out.println(saveFile.getAbsolutePath()+"==============="+fileName);
-
 							news.setImg(url);
 
 						}
@@ -479,9 +451,6 @@ News news=add_update(req);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			
-
 		}
 		return news;
 	}

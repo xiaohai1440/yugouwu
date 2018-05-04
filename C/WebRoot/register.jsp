@@ -50,7 +50,7 @@
 
 <script src="js/jquery-1.12.4.js" type="text/javascript"></script>
 <script src="js/jquery.validate.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/login.js" ></script>
+ <script type="text/javascript" src="js/login.js" ></script> 
 
 
 </head>
@@ -170,6 +170,10 @@
 	<script type="text/javascript"  >
 	
 	
+	
+	
+	
+	
 
 
 //正则框架===================================================================
@@ -206,11 +210,11 @@
     	   });
 
 
+*/
 
 
 
-
-    $(function () {
+   /*  $(function () {
     
     
  
@@ -288,14 +292,14 @@
            }
        });
        
-      /* 验证手机号的方法*/
+      // 验证手机号的方法
        jQuery.validator.addMethod("checkPhone",function (value,element) {
           var phone2=/^1[3|4|5|8][0-9]\d{4,8}$/;
            return this.optional(element)||phone2.test(value);//this.optional(element)用于表单输入值不为空时验证，当field为空时，即element的值为空
        },"手机号码不正确")
    });
-   
     */
+    
    
     
     
