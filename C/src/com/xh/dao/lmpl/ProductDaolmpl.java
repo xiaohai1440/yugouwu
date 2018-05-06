@@ -80,5 +80,36 @@ public class ProductDaolmpl extends JdbcUtil implements ProductDao {
 		
 	}
 
+	@Override
+	
+	public List<Product> select(Serializable id) {
+		// TODO Auto-generated method stub
+		
+		List<Product> list=null;
+		String sql="select * from easybuy_product where categoryLevel2Id=?";
+		
+		
+		try {
+			result=exceuteQuery(sql, id);
+			
+			list=ResultSet_Util.selectAllsa(result, Product.class);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	/*	
+		for (Product product : list) {
+			
+			
+			System.err.println(product+"33333333333333333333333331-------");
+			
+			
+		}*/
+		return list;
+	}
+
 	
 }

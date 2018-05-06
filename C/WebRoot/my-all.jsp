@@ -1,3 +1,6 @@
+<%@ page language="java" import="java.util.*,com.xh.bean.*"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -223,11 +226,70 @@
 					<li><a href="#">充值票务</a></li>
 				</ul>
 			</div>
+			
+			
+			
+			
 			<div>
-				<div class="pc-nav-title"><h3>手机数码</h3></div>
+			
+			
+			
+			
+				
+			
+			
+			
+				<div class="pc-nav-title"><h3>${mingzi} </h3></div>
+				
 				<div class="pc-nav-digit clearfix">
-					<ul>
-						<li>
+				
+				
+					<ul  id="jiejie">
+					
+					
+					
+					
+			 <c:forEach items="${iddd}"  var="dom">
+					
+					<script type="text/javascript">
+					
+					
+					
+					$(function(){
+					
+					
+					
+					 $("#jiejie").append(
+					 
+					 "<li>"
+					 +"<div class='digit1'><a href='#'><img src='images/shangpinxiangqing/X-1.png' width='100%'></a></div>"
+					 +"<div class='digit2'><a href='#'>"+'${dom.name}'+"</a></div>"
+					 +"</li>"
+					
+							
+							
+					 
+					 
+	            			 );
+	            			 
+	            			 
+	            		});	 
+	            		
+	            	/* 	
+							
+							
+						</li>
+							 */
+						
+				
+                     </script>
+                     
+					</c:forEach>
+					
+					
+						
+						
+						<!-- <li>
 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
 							<div class="digit2"><a href="#">家用电器</a></div>
 						</li>
@@ -270,14 +332,15 @@
 						<li>
 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
 							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
+						</li> -->
 					</ul>
 				</div>
+				
+				
 			</div>
+			
+<!-- 			
+			
 			<div>
 				<div class="pc-nav-title"><h3>摄影</h3></div>
 				<div class="pc-nav-digit clearfix">
@@ -333,6 +396,8 @@
 					</ul>
 				</div>
 			</div>
+		
+		 -->
 			<div style="padding-top:30px;">
 				<div class="member-pages clearfix">
 					<div class="fr pc-search-g">
@@ -356,6 +421,10 @@
 					</div>
 				</div>
 			</div>
+		
+		
+		
+		
 		</div>
 
 	</div>

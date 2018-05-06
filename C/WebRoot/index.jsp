@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css" href="css/base.css">
 <link rel="stylesheet" type="text/css" href="css/home.css">
  <script type="text/javascript" src="js/jquery.js"></script> 
-<script type="text/javascript" src="js/index.js"></script>
+<!-- <script type="text/javascript" src="js/index.js"></script> -->
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 <script type="text/javascript">
 	var intDiff = parseInt(90000);//倒计时总秒数量
@@ -114,35 +114,6 @@
 	<header id="pc-header">
 		<div class="pc-header-nav">
 			<div class="pc-header-con">
-
-
-
-<%-- 
-				<%
-					User user = (User) session.getAttribute("user");
-
-					if (user != null) {
-				%>
-
-				<div class="fl pc-header-link">
-
-					您好！<a href="#" target="_top" class="login-info-nick"><%=user.getUserName()%></a>欢迎来云购物
-
-				</div>
-
-				<%
-					} else {
-				%>
-				<div class="fl pc-header-link">
-					您好！，欢迎来云购物 <a href="login.jsp" target="_blank">请登录</a> <a
-						href="register.jsp" target="_blank"> 免费注册</a>
-				</div>
-
-				<%
-					}
-				%> 
- --%>
-
 
 				<div class="fl pc-header-link">
 
@@ -280,9 +251,176 @@
 					
 					
 					
+			 	
+					
+					
+					 <c:forEach items="${lists}"  var="dom">
+					 
+					 
+					 
+					 <li class="">
+						
+						<i class="list-icon-2"></i> 
+						
+						
+						<a href=""target="_blank">${dom.name}</a> /
+						<!-- <a href="" target="_blank">数码</a> /
+						<a href="" target="_blank">电脑办公</a>  -->
+						
+						
+						
+						<span></span></li>
+					 
+					 
+					
+					<!-- <script type="text/javascript">
+					
+					
+					//alert()
+					$(function(){
+					
+					
+					
+					 $(".pullDownList").append(
+					  "<li class='' name="+${dom.id}+">"   // name="+${dom.id}+"
+	            			 +"<i class='list-icon-1'></i>"	         			    
+	            			 +"<a href='' target='_blank'>"+'${dom.name}'+"</a>"
+	            			 +"<span></span></li>"
+	            			 );
+	            			 
+	            			 
+	            		});	 
+	            		
+	            			
+						
+						
+					/* 	
+						
+						<a href=""target="_blank">手机</a> /
+						<a href="" target="_blank">数码</a> /
+						<a href="" target="_blank">电脑办公</a> 
+						
+						
+						
+						<span></span></li>
+	            		 */
+                     </script> -->
+                     
+					</c:forEach>
+				
+				 
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 
+						<script type="text/javascript">
+					
+					$(function(){
+					
 					
 				
-						<!-- <li class="">
+					    $.ajax({
+	   
+	        url: "ProductCategoryServlet?methon=yiji",  //需要提交的服务器地址（自己写的servlet@WebServlet("/news/*")）
+	        type: "post",  //请求的方式
+	        //data: {"pageNum": pageNum},  //传递给服务器的参数
+	        async: false,
+	        success: function (data) {  //回调函数
+	          var data=$.parseJSON(data);
+	       	                 	         
+	            $.each(data, function (i, dom) {
+	                //一个dom就是一个用户对象
+	               
+	            	 $(".pullDownList").append(
+	            			 
+	            			 "<li name="+dom.id+" class=''>"
+	            			 +"<i class='list-icon-2'></i>"	         			    
+	            			 +"<a href=''>"+dom.name+"</a>"
+	            			 +"<span></span></li>"
+	            			 );
+	            			 
+	            	
+	            	
+	            	//===============================================
+	            	
+	  /*           	
+			    $.ajax({
+			    	
+			   
+			        url: "ProductCategoryServlet?methon=erji",  //需要提交的服务器地址（自己写的servlet@WebServlet("/news/*")）
+			        type: "post",  //请求的方式
+			        data: {"pageNum": dom.id},  //传递给服务器的参数
+			        async: false,
+			        success: function (data2) {  //回调函数
+			          var data1=$.parseJSON(data2);
+	
+						//alert(data);
+						
+						      $(".yMenuListCon").append("" +
+		          		"<div class='yMenuListConin'>"
+	            			 +"<div class='yMenuLCinList'>"
+	            			 +"<h3>"
+	            			 +"<a href='' class='yListName'>精品男装</a><a href=''class='yListMore'>更多 ></a>"
+	            			 +"</h3>"
+	            			 +"<p id='pinjie'><a href='' class='ecolor610'>大牌上新4442</a> <a href=''>商场同款223</a> "
+	            			 +"</p>" 
+	            			 +"</div> "
+	            			 +"</div>");
+	
+			            $.each(data1, function (i, dom1) {
+			            
+			            alert(dom1.name+"9090");      		 	
+			                //一个dom就是一个用户对象			            	
+			            	//做拼接		
+		            	
+			            	 $("#pinjie").append("<a href=''>"+dom1.name+"</a>");			            			            	
+			                //"<li class=''>"+"<i class='list-icon-1'></i> "+"<a href='' target='_blank'>"+dom.name+"</a> /"+"<span></span></li>"
+			            	 }); 
+			          		            
+
+			         
+		            
+			        },
+		      
+			    }); 
+	            	
+	            	
+	            	
+	            	
+	            	
+	            	
+	            	
+	            	 */
+	            			 
+	            			 
+	            	//===============================================		 
+	                	               
+	            });	            
+
+	        },
+	         
+	    }); 
+	            			 
+	            		});	 
+	            		
+                     </script>
+					
+					
+					
+					 -->
+					
+	<!--============================================================  -->			
+					<!-- <li class="">
 						
 						<i class="list-icon-1"></i> 
 						
@@ -324,11 +462,23 @@
 							
 							<li><i class="list-icon-2"></i> <a href="" target="_blank">零食44444444</a>
 							/<a href="" target="_blank">进口食品44444444444444</a> <span></span></li>	
-							
+							 -->
+							 
+							 
+							 
+							 
+							 
+							 
+							 
+				 		 
 						<li><i class="list-icon-2"></i> <a href="" target="_blank">大家电</a>
 							/<a href="" target="_blank">生活电器</a> <span></span></li>
+							
+						<!--		
 						<li><i class="list-icon-2"></i> <a href="" target="_blank">家具建材</a>
-							<span></span></li> -->
+							<span></span></li> 
+							 -->
+							
 						<!-- <li><i class="list-icon-2"></i> <a href="" target="_blank">珠宝饰品</a>
 							/<a href="" target="_blank">腕表眼镜</a> <span></span></li>
 						<li><i class="list-icon-2"></i> <a href="" target="_blank">汽车</a>
@@ -355,7 +505,93 @@
 					
 					
 					
-					<!-- 	 <div class="yMenuListConin">
+					<c:forEach items="${lists2}"  var="dom2" varStatus="ta">
+					
+					
+					
+					<script type="text/javascript">
+					//alert('${ta.index}');
+					
+					//alert("pinjie"+'${ta.index}');
+					
+						$(function(){
+					
+	            			  $(".yMenuListCon").append("<div class='yMenuListConin'>"
+	            			 +"<div class='yMenuLCinList'>"
+	            			 +"<h3>"
+	            			 +"<a href='' class='yListName'>精品男装</a><a href=''class='yListMore'>更多 ></a>"
+	            			 +"</h3>"
+	            			
+	            			 +"<p  id=pinjie"+'${ta.index}'+">  " /* <a href='#' class='ecolor610'>大牌上新</a> <a href='my-all.jsp'>商场同款</a> */
+	            			 +"</p>" 
+	            			 
+	            			
+	            			 
+	            			 +"</div> "
+	            			 +"</div>");
+	            			 
+	            			 });	
+	            			
+                     </script>
+                     
+                     
+                      <c:forEach items="${dom2}"  var="dom1">
+                                                                
+                      <script type="text/javascript">
+                      
+                      
+                     // alert("3333333111");
+                     
+                      	$(function(){
+                   
+	            			  $("#pinjie"+'${ta.index}').append("<a  href=ProductCategoryServlet?methon=sanjiye&mingzi="+'${dom1.name}'+"&id="+'${dom1.id}'+">"+'${dom1.name}'+"</a>");	
+	            			  
+	            			  
+	            			  	            			         			  
+	            			  });	
+	            			  
+	            		  // $(".yMenuListCon").lastElementChild.lastElementChild.lastElementChild.append("<a href=''>"+'${dom1.name}'+"444422S"+"</a>");	  
+	            			  
+	            			    </script>
+	            			 	</c:forEach>
+	            			 	
+	            			 	
+					</c:forEach>
+					
+					
+					
+					
+					
+					
+					
+					  
+            <!--           <script type="text/javascript">
+                      
+                      	$(function(){
+					
+					   
+
+					
+					});
+					
+					
+					
+				 </script>	
+					
+					 -->
+					
+					
+					
+					
+					
+					
+					
+				<!-- 	
+					
+					
+					
+					
+						 <div class="yMenuListConin">
 						
 						
 							<div class="yMenuLCinList">
@@ -465,9 +701,9 @@
 										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
 								</p>
 							</div>
-						</div>
+						</div> -->
 						
-						 -->
+						
 
 						<!-- <div class="yMenuListConin">
 							<div class="yMenuLCinList">
@@ -1651,12 +1887,56 @@
 			$(this).removeClass("hover");
 			$(this).find(".nav a").removeClass("hover");
 		})
+		
+		
+		
+		$(function(){	
+		// 导航左侧栏js效果 start
+		$(".pullDownList li").hover(function(){
+			$(".yMenuListCon").fadeIn();
+			var index=$(this).index(".pullDownList li");
+			if (!($(this).hasClass("menulihover")||$(this).hasClass("menuliselected"))) {
+				$($(".yBannerList")[index]).css("display","block").siblings().css("display","none");
+				$($(".yBannerList")[index]).removeClass("ybannerExposure");
+				setTimeout(function(){
+				$($(".yBannerList")[index]).addClass("ybannerExposure");
+				},60)
+			}else{	
+			}
+			$(this).addClass("menulihover").siblings().removeClass("menulihover");
+				$(this).addClass("menuliselected").siblings().removeClass("menuliselected");
+			$($(".yMenuListConin")[index]).fadeIn().siblings().fadeOut();
+		},function(){
+			
+		})
+		$(".pullDown").mouseleave(function(){
+			$(".yMenuListCon").fadeOut();
+			$(".yMenuListConin").fadeOut();
+			$(".pullDownList li").removeClass("menulihover");
+
+		})
+		// 导航左侧栏js效果  end
+		
+	})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</script>
 	
 	
 
 
 
-</script>
+
+
+
 </body>
 </html>

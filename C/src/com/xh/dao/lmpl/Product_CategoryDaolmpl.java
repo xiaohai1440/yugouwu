@@ -97,10 +97,15 @@ public class Product_CategoryDaolmpl extends JdbcUtil implements Product_Categor
 		String sql = "select * from easybuy_product_category where type=1";
 
 		// 创建集合保存所有信息
+		//System.err.println("进入1级菜单====================");
 		List<ProductCategory> easybuy_list = new ArrayList<>();
 		try {
+			
 			result=exceuteQuery(sql);
+			//System.err.println(result);
+			
 			easybuy_list=ResultSet_Util.selectAllsa(result, ProductCategory.class);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -126,6 +131,8 @@ public class Product_CategoryDaolmpl extends JdbcUtil implements Product_Categor
 
 		
 		System.err.println(sql+"=====>"+id);
+		
+		
 		// 创建集合保存所有信息
 		List<ProductCategory> easybuy_list = new ArrayList<>();
 		try {
@@ -139,12 +146,12 @@ public class Product_CategoryDaolmpl extends JdbcUtil implements Product_Categor
 			close_();
 		}
 		
-		for (ProductCategory productCategory : easybuy_list) {
+	/*	for (ProductCategory productCategory : easybuy_list) {
 			
 			System.err.println(productCategory.getName()+"=========名字===========");
 			
 		}
-
+*/
 		return easybuy_list;
 	}
 
