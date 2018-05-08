@@ -45,13 +45,17 @@ public class ProductDaolmpl extends JdbcUtil implements ProductDao {
 	@Override
 	public List<Product> selectAll() {
 		// TODO Auto-generated method stub
-		String sql="select * from easybuy_product";
+		String sql="select * from easybuy_product limit 0,10";
+		//String sql="select * from product 
 		List<Product > list =null;
 		try {
 			result=exceuteQuery(sql);
 			list=ResultSet_Util.selectAllsa(result,Product.class);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			close_();
+			
 		}
 		return list;
 	}
@@ -72,11 +76,11 @@ public class ProductDaolmpl extends JdbcUtil implements ProductDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-		
-		return selectAlla;
-		
+		}finally{
+			
+			close_();
+		}		
+		return selectAlla;		
 		
 	}
 
@@ -86,9 +90,7 @@ public class ProductDaolmpl extends JdbcUtil implements ProductDao {
 		// TODO Auto-generated method stub
 		
 		List<Product> list=null;
-		String sql="select * from easybuy_product where categoryLevel2Id=?";
-		
-		
+		String sql="select * from easybuy_product where categoryLevel3Id=?";	
 		try {
 			result=exceuteQuery(sql, id);
 			
@@ -97,17 +99,28 @@ public class ProductDaolmpl extends JdbcUtil implements ProductDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			
+			close_();
+		}		
+		return list;
+	}
+
+	@Override
+	public List<Product> selectLike(Serializable id) {
 		
+		List<Product> list=null;
+		String sql="select * from easybuy_product where name like \"%\"?\"%\" limit 0,5";	
 		
-	/*	
-		for (Product product : list) {
-			
-			
-			System.err.println(product+"33333333333333333333333331-------");
-			
-			
-		}*/
+		try {
+			result=exceuteQuery(sql, id);			
+			list = ResultSet_Util.selectAllsa(result, Product.class);
+								
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{						
+			close_();
+		}				
 		return list;
 	}
 

@@ -249,7 +249,7 @@
 					
 					
 					
-			 <c:forEach items="${iddd}"  var="dom">
+			 <c:forEach items="${nameList}"  var="dom">
 					
 					<script type="text/javascript">
 					
@@ -262,14 +262,11 @@
 					 $("#jiejie").append(
 					 
 					 "<li>"
-					 +"<div class='digit1'><a href='#'><img src='images/shangpinxiangqing/X-1.png' width='100%'></a></div>"
-					 +"<div class='digit2'><a href='#'>"+'${dom.name}'+"</a></div>"
+					 +"<div class='digit1'><a href='page.jsp?id="+'${dom.id}'+"'><img src='images/shangpinxiangqing/X-1.png' width='100%'></a></div>"
+					 +"<div class='digit2'><a href='page.jsp?id="+'${dom.id}'+"'>"+'${dom.name}'+"</a></div>"
 					 +"</li>"
 					
-							
-							
-					 
-					 
+ 
 	            			 );
 	            			 
 	            			 

@@ -212,6 +212,7 @@ public class ResultSet_Util {
 
 						//判断它是否是set方法，是返回true
 						boolean startsWith = name.startsWith("set");
+						
 						if (startsWith) {
 
 							//截取了set方法后面的属性名

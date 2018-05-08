@@ -1,6 +1,5 @@
-
-<%@ page language="java" import="java.util.*,com.xh.bean.*"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,com.beans.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,10 +36,10 @@
                 }
                 if (minute <= 9) minute = '0' + minute;
                 if (second <= 9) second = '0' + second;
-                $('#day_show').jsp(day+"天");
-                $('#hour_show').jsp('<s id="h"></s>'+hour+'时');
-                $('#minute_show').jsp('<s></s>'+minute+'分');
-                $('#second_show').jsp('<s></s>'+second+'秒');
+                $('#day_show').html(day+"天");
+                $('#hour_show').html('<s id="h"></s>'+hour+'时');
+                $('#minute_show').html('<s></s>'+minute+'分');
+                $('#second_show').html('<s></s>'+second+'秒');
                 intDiff--;
             }, 1000);
         }
@@ -76,7 +75,18 @@
 
 	</script>
 	<script type="text/javascript">
-        $(document).ready(function(){
+        $(function(){
+        $(".pc-header-link").hover(
+            function () {
+            $(".topDown").show();//慢
+            },
+            function () {
+            $(".topDown").hide();//快
+            }
+        );
+        
+
+        
             var $miaobian=$('.Xcontent08>div');
             var $huantu=$('.Xcontent06>img');
             var $miaobian1=$('.Xcontent26>div');
@@ -101,22 +111,33 @@
             }
             $(".Xcontent33").click(function(){
                 var value=parseInt($('.input').val())+1;
-                $('.input').val(value);
+                $(".input").val(value);
+                $(".input").attr("value",value);
             })
 
             $(".Xcontent32").click(function(){
                 var num = $(".input").val()
                 if(num>0){
-                    $(".input").val(num-1);
+                var value  =parseInt($(".input").val())-1;
+                 $(".input").val(value);
+                 $(".input").attr("value",value);
                 }
 
             })
 
         })
 	</script>
+
 	<style>
 		.li-ul-ss l{
 			width:200px;
+		}
+		.topDown{
+			position: absolute;
+			background-color:rgba(128,128,128.8);
+			z-index:5;
+			width:200px;
+			border:1px red solid;
 		}
 	</style>
 </head>
@@ -125,7 +146,27 @@
 <header id="pc-header">
 	<div class="pc-header-nav">
 		<div class="pc-header-con">
-			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="login.jsp" target="_blank">请登录</a> <a href="register.jsp" target="_blank"> 免费注册</a></div>
+			<div class="fl pc-header-link" >
+			<c:choose>
+				<c:when test="${not empty sessionScope.user}">
+					您好！，<a href="#" class="menu-btn"><c:out value="${sessionScope.user.userName}"></c:out></a>
+					<ul class="topDown" style="display:none"><!-- style="display:none" -->
+					<c:if test="${sessionScope.user.type==1}">
+					<li><a href="back/index.jsp">进入管理</a></li>
+					</c:if>
+                    <li><a href="#">我的账号</a></li>
+                    <li><a href="#">我的余额</a></li>
+                    <li><a href="exit.jsp">退出登录</a></li>
+                   <!--  <li><a href="">我的评论</a></li>
+                    <li><a href="">电子书架</a></li> -->
+                </ul>欢迎来云购物
+				</c:when>
+				<c:when test="${empty sessionScope.user}">
+					您好！，欢迎来云购物 <a href="login.jsp" target="_blank">请登录</a> <a href="register.jsp" target="_blank"> 免费注册</a>
+				</c:when>
+			</c:choose>
+			<!-- 您好！，欢迎来云购物 <a href="login.jsp" target="_blank">请登录</a> <a href="register.jsp" target="_blank"> 免费注册</a> -->
+			</div>
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
@@ -184,7 +225,7 @@
 		</div>
 		<div class="fr pc-head-car">
 			<i class="icon-car"></i>
-			<a href="#">我的购物车</a>
+			<a href="my-car.jsp">我的购物车</a>
 			<em>10</em>
 		</div>
 	</div>
@@ -230,12 +271,12 @@
 			<div class="Xcontent12"><img src="images/shangpinxiangqing/X10.png"></div>
 		</ol>
 		<ol class="Xcontent13 clearfix">
-			<div class="Xcontent14 clearfix"><a href="#"><p>赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT </p></a></div>
+			<div class="Xcontent14 clearfix"></div>
 			<div class="Xcontent15 clearfix red fl" style="margin-top:2px">新品上架</div>
 			<div class="Xcontent16 clearfix"><p style="margin:0">美妆护肤放肆购，你值得拥有！更多惊喜</p></div>
 			<div class="Xcontent17">
 				<p class="Xcontent18">售价</p>
-				<p class="Xcontent19">￥<span>69.00</span></p>
+				<p class="Xcontent19"></p>
 				<div class="Xcontent20">
 					<p class="Xcontent21">促销</p>
 					<img src="images/shangpinxiangqing/X12.png">
@@ -256,16 +297,17 @@
 				<p class="Xcontent31">数量</p>
 				<div class="Xcontent32"><img src="images/shangpinxiangqing/X15.png"></div>
 				<form>
-					<input class="input" value="1"></form>
+					<input class="input"  id="sc" value="1"></form>
 				<div class="Xcontent33"><img src="images/shangpinxiangqing/16.png"></div>
 
 			</div>
-			<div class="Xcontent34"><a href="#">立即购买</a></div>
-			<div class="Xcontent35"><a href="#">加入购物车</a></div>
+			<%
+				String id=request.getParameter("id");
+ 			%>
+			<div class="Xcontent34"><a href='#' onclick="sclick(<%=id %>)">立即购买</a></div><%-- click(<%=id %>) --%>
+			<div class="Xcontent35"><a href='#' onclick="sclick(<%=id %>)">加入购物车</a></div><%-- click(<%=id %>) --%>
 
 		</ol>
-
-
 
 	</ul>
 </div>
@@ -975,7 +1017,6 @@
 	</div>
 </div>
 <div style="height:100px"></div>
-
 <footer>
 	<div class="pc-footer-top">
 		<div class="center">
@@ -1049,6 +1090,51 @@
 		</div>
 	</div>
 </footer>
+
+			<%-- <%
+				String id=request.getParameter("id");
+ 			%> --%>
+<script type="text/javascript">
+
+
+var num=$(".input").val();
+/*  动态获取数据，并拼接      */  
+load(0);  //默认初始化,pageNum为0
+var data;
+function  load(pageNum) {
+       $.ajax({
+           url: "ProductServlet?method=finId&id=<%=id%>",  //需要提交的服务器地址
+           type: "post",  //请求的方式
+           e
+           data: {"pageNum": pageNum},  //传递给服务器的参数
+           success: function (data) {  //回调函数
+           data=$.parseJSON(data);//从数据库获得的json对象，已经包含查询回来的数据                       
+               //清空数据
+		 $(".Xcontent14").html('');
+		 $(".Xcontent19").html('');
+/* 		 $(".Xcontent34").html('');
+		  $(".Xcontent35").html(''); */
+		 $(".Xcontent19").append("￥<span>"+data.price+"</span></p>");//通过中转页面判断是否登录，如果不登录直接存进cookie,否则存进数据库
+		 $(".Xcontent14").append("<a href='#'><p>"+data.name+"</p></a>");
+		/*  $(".Xcontent34").append("<a href='ShoppingCartServlet?method=addcar&id="+data.id+"&name="+data.name+"&price="+data.price+"'>立即购买</a>");
+		 $(".Xcontent35").append("<a href='ShoppingCartServlet?method=addcar&id="+data.id+"&name="+data.name+"&price="+data.price+"'>加入购物车</a>"); */
+		/*   $(".Xcontent34").append("<a href='' onclick='click("+data.id+","+data.name+","+data.price+")'>立即购买</a>");
+		 $(".Xcontent35").append("<a href='' onclick='click("+data.id+","+data.name+","+data.price+")'>加入购物车</a>"); */ 
+           }
+       });
+   };
+
+
+</script>
+<script type="text/javascript">
+/* var num=$("#sc").val(); */
+
+function sclick(id){
+alert("已成功加入购物车");
+var num = $(".input").val();
+window.location.href="ShoppingCartServlet?method=addcar&id="+id+"&num="+num;
+}
+</script>
 <script type="text/javascript">
     //hover 触发两个事件，鼠标移上去和移走
     //mousehover 只触发移上去事件

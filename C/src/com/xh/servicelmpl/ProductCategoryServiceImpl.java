@@ -105,14 +105,14 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 		MemcachedClient in = Memcached.getIn();
 
 		if (in.get("keyee")==null) {
-			System.err.println("<<<<<<<<<<<<<<<<进入数据库>>>>>>>>>>>>>>>>>>===");
+			System.err.println("<<<<<<<<<<<<<<<<进入数据库>>>>>>>>>>>>>>>>>>");
 			product= pro.getProduct();
 
 			in.set("keyee", 60*30, product);
 
 		}else {
 
-			System.err.println("<<<<<<<<<<<<<<<<进入缓存>>>>>>>>>>>>>>>>>>===");
+			System.err.println("<<<<<<<<<<<<<<<<进入缓存>>>>>>>>>>>>>>>>>>");
 			product=(List<ProductCategory>) in.get("keyee");
 
 		}
@@ -125,45 +125,29 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
 	}
 
-
+	/**
+	 * 
+	 * @return  所有商品
+	 */
 	public Map<ProductCategory, Map<ProductCategory,List<Product>>> getProduct1() {
 
 
-		System.err.println("555555555555===================================55555566");
 
 		Map<ProductCategory, Map<ProductCategory,List<Product>>> map=new LinkedHashMap<>();
 
 
 
 		//  List<List<Product>> listssEs=new ArrayList<>();
-
 		//  map.put(key, value);
-
 		// Map<ProductCategory, Map<ProductCategory,List<Product>>> map=new LinkedHashMap<>();
 
 		List<ProductCategory> product = getProduct();//1
-
-
-		Map<ProductCategory,List<Product>> mapp=new LinkedHashMap();
-
-
-		/*  for (ProductCategory productCategory : product) {
-
-
-		  System.err.println(productCategory.getName()+">>>>>>>>>>>>>>>>>.");
-
-	}*/
-
-
+		Map<ProductCategory,List<Product>> map1=new LinkedHashMap();
 		for (ProductCategory productCategory : product) {//1级所有的对象
-
-
 
 			//通过1级的id查找父类的id这个是2级的东西
 
-			List<ProductCategory> product2 = getProduct(productCategory.getId());//单个1级对象对应的所有2二级对象
-
-
+			List<ProductCategory> product2 = getProduct(productCategory.getType()+1,productCategory.getId());//单个1级对象对应的所有2二级对象
 
 			//List<Product> list =new ArrayList<>();
 
@@ -171,69 +155,47 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
 				Integer id = productCategory2.getId();	
 
-
-				System.err.println(id+"3级===============》");
-
-
 				List<Product> name = name(id);	//单个2级对象对应的三级数据集合	 
 
-				mapp.put(productCategory2, name);
+				map1.put(productCategory2, name);
 
 
 			}
-
-
-			map.put(productCategory, mapp);//全部数据
-
-
-
-		}
-
-		/*	  
-Set<ProductCategory> keySet = map.keySet();
-     for (ProductCategory productCategory : keySet) {
-
-
-    	 Map<ProductCategory, List<Product>> map2 = map.get(productCategory);
-
-
-    	 Set<ProductCategory> keySet2 = map2.keySet();
-
-
-    	 for (ProductCategory productCategory2 : keySet2) {
-
-    		 List<Product> list = map2.get(keySet2);
-
-
-    		 for (Product product2 : list) {
-
-    			 System.err.println(">>>>>>>>>>>>>>>"+product2);
-
-			}
-
+			
+			map.put(productCategory, map1);//全部数据
 
 		}
 
 
+		Set<ProductCategory> keySet = map.keySet();
+		for (ProductCategory productCategory : keySet) {
 
 
-	}
-		 */
+			Map<ProductCategory, List<Product>> map2 = map.get(productCategory);//2
+
+
+			Set<ProductCategory> keySet2 = map2.keySet();
+
+
+			for (ProductCategory productCategory2 : keySet2) {
+
+				List<Product> list = map2.get(keySet2);//3
+
+
+				for (Product product2 : list) {
+
+					System.err.println(">>>>>>>>>>>>>>>"+product2);
+
+				}
+			}
+		}
+
 
 
 		return map;
 
-		//1级标题，包括2,2包括3
-		//Map<Object, Map<Object,Object>> hashMap = new LinkedHashMap<>();
-
-
-
-
 
 	}
-
-
-
 
 
 	/**
@@ -242,16 +204,16 @@ Set<ProductCategory> keySet = map.keySet();
 	 * 
 	 */
 	@Override
-	public List<ProductCategory> getProduct(Serializable id) {
+	public List<ProductCategory> getProduct(Integer integer,Serializable id) {
 		// TODO Auto-generated method stub
 		List<ProductCategory> product = null;
 
 		MemcachedClient in = Memcached.getIn();
-		if (in.get(id.toString())==null) {
+		if (in.get(id.toString()+integer)==null) {
 			System.err.println("<<<<<<<<<<<<<<<<进入数据库>>>>>>>>>>>>>>>>>>");
-			product= pro.getProduct(id);
+			product= pro.getProduct(integer,id);
 
-			in.set(id.toString(), 60*30, product);
+			in.set(id.toString()+integer, 60*30, product);
 
 		}else {
 
@@ -298,6 +260,29 @@ Set<ProductCategory> keySet = map.keySet();
 		return select;
 
 
+	}
+
+	@Override
+	public List<ProductCategory> getProduct2(Serializable id) {
+		List<ProductCategory> product = null;
+
+		MemcachedClient in = Memcached.getIn();
+		if (in.get(id.toString())==null) {
+			System.err.println("<------------------进入数据库------------------->");
+			product= pro.getProduct2(id);
+
+			in.set(id.toString(), 60*30, product);
+
+		}else {
+
+			System.err.println("<------------------->进入缓存------------------->");
+
+			product=(List<ProductCategory>) in.get(id.toString());
+
+
+		}
+
+		return product;	
 	}
 
 }

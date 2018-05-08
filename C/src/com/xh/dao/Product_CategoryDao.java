@@ -10,7 +10,8 @@ public interface Product_CategoryDao extends BaseDao<ProductCategory> {
 	
 	//取得3个表标题的----》在一节
 	List<ProductCategory>  getProduct(); 
-	List<ProductCategory>  getProduct(Serializable id); 
+	List<ProductCategory>  getProduct(Integer integer,Serializable id); 
+	List<ProductCategory>  getProduct2(Serializable id); 
 	
 	
 

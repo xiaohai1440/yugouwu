@@ -1,8 +1,5 @@
-
-
-
-<%@ page language="java" import="java.util.*"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,14 +17,55 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript" src="js/modernizr-custom-v2.7.1.min.js"></script>
+<style type="text/css">
+.topDown{
+			position: absolute;
+			background-color:rgba(128,128,128.8);
+			z-index:5;
+			width:200px;
+			border:1px red solid;
+		}
+</style>
+<script type="text/javascript">
+$(function(){
+ $(".pc-header-link").hover(
+            function () {
+            $(".topDown").show();//慢
+            },
+            function () {
+            $(".topDown").hide();//快
+            }
+        );
+});
 
+</script>
 </head>
 <body>
 
 <header id="pc-header">
 	<div class="pc-header-nav">
 		<div class="pc-header-con">
-			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="login.jsp" target="_blank">请登录</a> <a href="register.html" target="_blank"> 免费注册</a></div>
+			<div class="fl pc-header-link" >
+			<c:choose>
+				<c:when test="${not empty sessionScope.user}">
+					您好！，<a href="#" class="menu-btn"><c:out value="${sessionScope.user.userName}"></c:out></a>
+					<ul class="topDown" style="display:none"><!-- style="display:none" -->
+					<c:if test="${sessionScope.user.type==1}">
+					<li><a href="back/index.jsp">进入管理</a></li>
+					</c:if>
+                    <li><a href="#">我的账号</a></li>
+                   <!--  <li><a href="#">我的余额</a></li> -->
+                    <li><a href="tuisession.jsp">退出登录</a></li>
+                   <!--  <li><a href="">我的评论</a></li>
+                    <li><a href="">电子书架</a></li> -->
+                </ul>欢迎来云购物
+				</c:when>
+				<c:when test="${empty sessionScope.user}">
+					您好！，欢迎来云购物 <a href="login.jsp" target="_blank">请登录</a> <a href="register.jsp" target="_blank"> 免费注册</a>
+				</c:when>
+			</c:choose>
+			<!-- 您好！，欢迎来云购物 <a href="login.jsp" target="_blank">请登录</a> <a href="register.jsp" target="_blank"> 免费注册</a> -->
+			</div>
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
@@ -64,7 +102,7 @@
 	<div class="pc-header-logo clearfix">
 		<div class="pc-fl-logo fl">
 			<h1>
-				<a href="index.html"></a>
+				<a href="index.jsp"></a>
 			</h1>
 		</div>
 		<div class="head-form fl">
@@ -86,7 +124,7 @@
 		</div>
 		<div class="fr pc-head-car">
 			<i class="icon-car"></i>
-			<a href="#">我的购物车</a>
+			<a href="my-car.jsp">我的购物车</a>
 		</div>
 	</div>
 	<!--  顶部    start-->
@@ -130,7 +168,7 @@
 						<th class="tab-7">操作</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="tr1">
 					<tr>
 						<td colspan="7" style="padding-left:10px; background:#eee">
 							<input type="checkbox" checked >
@@ -143,7 +181,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th><input type="checkbox"  style="margin-left:10px; float:left"></th>
+						<!-- <th><input type="checkbox"  style="margin-left:10px; float:left"></th>
 						<th class="tab-th-1">
 							<a href="#"><img src="images/shangpinxiangqing/X1.png" width="100%" alt=""></a>
 							<a href="#" class="tab-title">赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT </a>
@@ -162,30 +200,9 @@
 							<span>+</span>
 						</th>
 						<th class="red">299.99</th>
-						<th><a href="#">删除</a></th>
+						<th><a href="#">删除</a></th> -->
 					</tr>
-					<tr>
-						<th><input type="checkbox"  style="margin-left:10px; float:left"></th>
-						<th class="tab-th-1">
-							<a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%" alt=""></a>
-							<a href="#" class="tab-title">赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT </a>
-						</th>
-						<th>
-							<p>颜色：黑色</p>
-							<p>规格：落地款</p>
-						</th>
-						<th>
-							<p>399.99</p>
-							<p class="red">299.99</p>
-						</th>
-						<th class="tab-th-2">
-							<span>-</span>
-							<input type="text" value="1" maxlength="3" placeholder="" class="shul">
-							<span>+</span>
-						</th>
-						<th class="red">299.99</th>
-						<th><a href="#">删除</a></th>
-					</tr>
+
 				</tbody>
 			</table>
 
@@ -201,8 +218,11 @@
 				<a href="#">清楚失效商品</a>
 			</div>
 			<div class="fr pc-shop-fr">
-				<p>共有 <em class="red pc-shop-shu">2</em> 款商品，总计（不含运费）</p>
-				<span>¥ 699.00</span>
+			<em class="pc-shop-fr2">
+				<!-- <p>共有 <em class="red pc-shop-shu">2</em> 款商品，总计（不含运费）</p>
+				<span>¥ 699.00</span> -->
+			</em>
+				
 				<a href="my-add.jsp">去付款</a>
 			</div>
 		</div>
@@ -286,6 +306,68 @@
 		</div>
 	</div>
 </footer>
+
+
+
+ 
+<script type="text/javascript">
+/* $(".lei:last div:last "). */
+/*  动态获取数据，并拼接      */  
+load(0);  //默认初始化,pageNum为0
+var data;
+
+function  load(pageNum) {
+       $.ajax({
+           url: "ShoppingCartServlet?method=select",  //需要提交的服务器地址，id为商品Id
+           type: "post",  //请求的方式
+           data: {"pageNum": pageNum},  //传递给服务器的参数
+           success: function (data) {  //回调函数
+           data=$.parseJSON(data);//从数据库获得的json对象，已经包含查询回来的数据                       
+               //清空数据
+$("#tr1").html('');
+var number=0;
+var numm=0;
+//追加数据  data.list需要遍历的集合  list必须是pageInfo中的属性名
+ $.each(data, function (i, news) {
+         $("#tr1").append(
+ "<tr>"        
++"<th><input type='checkbox'  style='margin-left:10px; float:left'></th>"
++"<th class='tab-th-1'>"
++"<a href='#'><img src='images/shangpinxiangqing/X1.png' width='100%' alt=''></a>"
++"<a href='#' class='tab-title'>"+news.product.name+"</a>"
++"</th>"
++"<th>"
++"<p>颜色：黑色</p>"
++"<p>规格：落地款</p>"
++"</th>"
++"<th>"
++"<p>399.99</p>"
++"<p class='red'>"+news.product.price+"</p>"
++"</th>"
++"<th class='tab-th-2'>"
++"<span>-</span>"
++"<input type='text' value='"+news.num+"' maxlength='3' placeholder='' class='shul'>"
++"<span>+</span>"
++"</th>"
++"<th class='red'>"+(news.product.price*news.num)+"</th>"
++"<th><a href=''>删除</a></th>"
++"</tr>"
+); 
+
+number+=1;
+numm =(numm+(news.product.price*news.num));     
+});
+
+$(".pc-shop-fr2").html('');
+$(".pc-shop-fr2").append(
+"<p>共有 <em class='red pc-shop-shu'>"+number+"</em> 款商品，总计（不含运费）</p>"
++"<span>¥ "+numm+"</span>"
+);
+           }
+       });
+   };
+		
+</script>
 <script type="text/javascript">
     //hover 触发两个事件，鼠标移上去和移走
     //mousehover 只触发移上去事件

@@ -50,9 +50,11 @@ public class Product_CategoryDaolmpl extends JdbcUtil implements Product_Categor
 		String sql = "select * from easybuy_product_category ";
 
 		// 创建集合保存所有信息
-		List<ProductCategory> easybuy_list = new ArrayList<>();
+		List<ProductCategory> easybuy_list = null;
 		try {
 			result=exceuteQuery(sql);
+			
+			easybuy_list=ResultSet_Util.selectAllsa(result, ProductCategory.class);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,7 +62,7 @@ public class Product_CategoryDaolmpl extends JdbcUtil implements Product_Categor
 
 			close_();
 		}
-		easybuy_list=ResultSet_Util.selectAllsa(result, ProductCategory.class);
+		
 
 		return easybuy_list;
 	}
@@ -74,38 +76,38 @@ public class Product_CategoryDaolmpl extends JdbcUtil implements Product_Categor
 		String sql = "select * from easybuy_product_category where id=?";
 		Object[] params = { id };
 		ProductCategory productCategory=null;
-		
+
 		try {
 			result=exceuteQuery(sql, params);
 			productCategory=ResultSet_Util.selectAlla(result, ProductCategory.class);
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			
+
 			close_();
 		}
-		
-		
+
+
 		return productCategory;
 	}
 
 	@Override
 	public List<ProductCategory> getProduct() {
-		
+
 		String sql = "select * from easybuy_product_category where type=1";
 
 		// 创建集合保存所有信息
 		//System.err.println("进入1级菜单====================");
-		List<ProductCategory> easybuy_list = new ArrayList<>();
+		List<ProductCategory> easybuy_list =null;
 		try {
-			
+
 			result=exceuteQuery(sql);
 			//System.err.println(result);
-			
+
 			easybuy_list=ResultSet_Util.selectAllsa(result, ProductCategory.class);
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,28 +115,52 @@ public class Product_CategoryDaolmpl extends JdbcUtil implements Product_Categor
 
 			close_();
 		}
-		
-	/*	for (ProductCategory productCategory : easybuy_list) {
-			
+
+		/*	for (ProductCategory productCategory : easybuy_list) {
+
 			System.err.println(productCategory+"=========23232323232===========");
-			
+
 		}*/
 
 		return easybuy_list;
 	}
 
 	@Override
-	public List<ProductCategory> getProduct(Serializable id) {
+	public List<ProductCategory> getProduct(Integer integer,Serializable id) {
 		// TODO Auto-generated method stub
-		
-		String sql = "select * from easybuy_product_category where parentid=?";
 
-		
-		System.err.println(sql+"=====>"+id);
-		
-		
+		//String sql = "select * from easybuy_product_category where parentid=?";
+		String sql = "select * from easybuy_product_category where type=? and parentId=?";
+
+
+		//System.err.println(sql+"=====>"+id);
+
+		Object[] paObject={integer,id};
+
 		// 创建集合保存所有信息
-		List<ProductCategory> easybuy_list = new ArrayList<>();
+		List<ProductCategory> easybuy_list = null;
+		try {
+			result=exceuteQuery(sql,integer,paObject);
+			easybuy_list=ResultSet_Util.selectAllsa(result, ProductCategory.class);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+
+			close_();
+		}
+
+		return easybuy_list;
+	}
+
+	@Override
+	public List<ProductCategory> getProduct2(Serializable id) {
+
+
+		String sql = "select * from easybuy_product_category where type=?";
+
+		// 创建集合保存所有信息
+		List<ProductCategory> easybuy_list =null;
 		try {
 			result=exceuteQuery(sql,id);
 			easybuy_list=ResultSet_Util.selectAllsa(result, ProductCategory.class);
@@ -145,13 +171,7 @@ public class Product_CategoryDaolmpl extends JdbcUtil implements Product_Categor
 
 			close_();
 		}
-		
-	/*	for (ProductCategory productCategory : easybuy_list) {
-			
-			System.err.println(productCategory.getName()+"=========名字===========");
-			
-		}
-*/
+
 		return easybuy_list;
 	}
 

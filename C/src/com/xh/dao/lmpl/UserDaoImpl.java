@@ -198,6 +198,8 @@ public class UserDaoImpl extends JdbcUtil implements UserDao  {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
+			
+			close_();
 			//关闭资源
 			//closeAss(conn, pre, result);
 

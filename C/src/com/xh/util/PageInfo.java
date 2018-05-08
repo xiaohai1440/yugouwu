@@ -5,6 +5,16 @@ import java.util.List;
 
 import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
+
+/**
+ * 
+ * @author LSZ
+ *
+ * @param <T>
+ * 非宁静无以致远！
+ * 2018-5-8上午9:17:18   Gosn   Ajax  实现分页
+ *
+ */
 public class PageInfo<T> implements Serializable {
 	// 当前页---->
 	private int pageNum =1 ;
@@ -12,7 +22,6 @@ public class PageInfo<T> implements Serializable {
 	// 每页显示的数量
 	private int pageSize =6;
 	
-
 	// 总记录数，在数据库获取coutn(*)
 	private int total;
 	

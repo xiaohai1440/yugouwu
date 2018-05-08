@@ -100,7 +100,6 @@ public class NewsServlet extends HttpServlet {
 		// 保存在request作用域
 		req.setAttribute("news", news);
 		try {
-			System.err.println(news+"=========6666666666666666666666666666=========");
 			req.getRequestDispatcher("backstage/new_edit.jsp").forward(req, resp);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();

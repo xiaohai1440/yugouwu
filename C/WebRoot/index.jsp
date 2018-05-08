@@ -1,8 +1,8 @@
 <%@ page language="java" import="java.util.*,com.xh.bean.*"
 	pageEncoding="UTF-8"%>
-	
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +18,7 @@
 	href="img/icon/favicon.ico">
 <link rel="stylesheet" type="text/css" href="css/base.css">
 <link rel="stylesheet" type="text/css" href="css/home.css">
- <script type="text/javascript" src="js/jquery.js"></script> 
+<script type="text/javascript" src="js/jquery.js"></script>
 <!-- <script type="text/javascript" src="js/index.js"></script> -->
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 <script type="text/javascript">
@@ -123,12 +123,9 @@
 									value="${sessionScope.user.userName}"></c:out> </a>
 							<ul class="topDown" style="display:none">
 								<!-- style="display:none" -->
-								<li><a href="">账号管理</a>
-								</li>
-								<li><a href="tuisession.jsp">退出登录</a>
-								</li>
-								<li><a href="">我的余额</a>
-								</li>
+								<li><a href="">账号管理</a></li>
+								<li><a href="tuisession.jsp">退出登录</a></li>
+								<li><a href="">我的余额</a></li>
 								<!--  <li><a href="">我的评论</a></li>
                     <li><a href="">电子书架</a></li> -->
 							</ul>欢迎来云购物
@@ -146,14 +143,13 @@
 
 				<div class="fr pc-header-list top-nav">
 					<ul>
-												
-                <c:if test="${sessionScope.user.type>0}">
-                 <li><a href="backstage/index.jsp">后台管理！</a>				
-		     	</li>
-			  </c:if>
-					
-					
-					
+
+						<c:if test="${sessionScope.user.type>0}">
+							<li><a href="backstage/index.jsp">后台管理！</a></li>
+						</c:if>
+
+
+
 						<li>
 							<div class="nav">
 								<i class="pc-top-icon"></i><a href="#">我的订单</a>
@@ -173,7 +169,8 @@
 										<a href="">店铺动态</a>
 									</dd>
 								</dl>
-							</div></li>
+							</div>
+						</li>
 						<li>
 							<div class="nav">
 								<i class="pc-top-icon"></i><a href="#">我的商城</a>
@@ -193,19 +190,16 @@
 										<a href="">店铺动态</a>
 									</dd>
 								</dl>
-							</div></li>
-							
-			
-							
-							
-						<li><a href="#">我的云购</a>
+							</div>
 						</li>
-						<li><a href="#">我的收藏</a>
-						</li>
-						<li><a href="#">会员中心</a>
-						</li>
-						<li><a href="#">客户服务</a>
-						</li>
+
+
+
+
+						<li><a href="#">我的云购</a></li>
+						<li><a href="#">我的收藏</a></li>
+						<li><a href="#">会员中心</a></li>
+						<li><a href="#">客户服务</a></li>
 						<!-- <li><a href="#">帮助中心</a>
 						</li> -->
 					</ul>
@@ -224,6 +218,26 @@
 						placeholder="洗衣机" type="text">
 					<button class="button" onclick="search('key');return false;">搜索</button>
 				</form>
+				
+				<!-- 模糊查询的下拉菜单 -->
+				<ul class="topDown1">
+			
+				</ul>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				<div class="words-text clearfix">
 					<a href="#" class="red">1元秒爆</a> <a href="#">低至五折</a> <a href="#">农用物资</a>
 					<a href="#">佳能相机</a> <a href="#">服装城</a> <a href="#">买4免1</a> <a
@@ -240,685 +254,73 @@
 			<!-- 导航   start  -->
 			<div class="yNavIndex">
 				<div class="pullDown">
-				
-				
+
+
 					<h2 class="pullDownTitle">
 						<i class="icon-class"></i>所有商品分类
 					</h2>
-					
+
 					<ul class="pullDownList">
-					
-					
-					
-					
-			 	
-					
-					
-					 <c:forEach items="${lists}"  var="dom">
-					 
-					 
-					 
-					 <li class="">
-						
-						<i class="list-icon-2"></i> 
-						
-						
-						<a href=""target="_blank">${dom.name}</a> /
-						<!-- <a href="" target="_blank">数码</a> /
-						<a href="" target="_blank">电脑办公</a>  -->
-						
-						
-						
-						<span></span></li>
-					 
-					 
-					
-					<!-- <script type="text/javascript">
-					
-					
-					//alert()
-					$(function(){
-					
-					
-					
-					 $(".pullDownList").append(
-					  "<li class='' name="+${dom.id}+">"   // name="+${dom.id}+"
-	            			 +"<i class='list-icon-1'></i>"	         			    
-	            			 +"<a href='' target='_blank'>"+'${dom.name}'+"</a>"
-	            			 +"<span></span></li>"
-	            			 );
-	            			 
-	            			 
-	            		});	 
-	            		
-	            			
-						
-						
-					/* 	
-						
-						<a href=""target="_blank">手机</a> /
-						<a href="" target="_blank">数码</a> /
-						<a href="" target="_blank">电脑办公</a> 
-						
-						
-						
-						<span></span></li>
-	            		 */
-                     </script> -->
-                     
-					</c:forEach>
-				
-				 
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-					<!-- 
-						<script type="text/javascript">
-					
-					$(function(){
-					
-					
-				
-					    $.ajax({
-	   
-	        url: "ProductCategoryServlet?methon=yiji",  //需要提交的服务器地址（自己写的servlet@WebServlet("/news/*")）
-	        type: "post",  //请求的方式
-	        //data: {"pageNum": pageNum},  //传递给服务器的参数
-	        async: false,
-	        success: function (data) {  //回调函数
-	          var data=$.parseJSON(data);
-	       	                 	         
-	            $.each(data, function (i, dom) {
-	                //一个dom就是一个用户对象
-	               
-	            	 $(".pullDownList").append(
-	            			 
-	            			 "<li name="+dom.id+" class=''>"
-	            			 +"<i class='list-icon-2'></i>"	         			    
-	            			 +"<a href=''>"+dom.name+"</a>"
-	            			 +"<span></span></li>"
-	            			 );
-	            			 
-	            	
-	            	
-	            	//===============================================
-	            	
-	  /*           	
-			    $.ajax({
-			    	
-			   
-			        url: "ProductCategoryServlet?methon=erji",  //需要提交的服务器地址（自己写的servlet@WebServlet("/news/*")）
-			        type: "post",  //请求的方式
-			        data: {"pageNum": dom.id},  //传递给服务器的参数
-			        async: false,
-			        success: function (data2) {  //回调函数
-			          var data1=$.parseJSON(data2);
-	
-						//alert(data);
-						
-						      $(".yMenuListCon").append("" +
-		          		"<div class='yMenuListConin'>"
-	            			 +"<div class='yMenuLCinList'>"
-	            			 +"<h3>"
-	            			 +"<a href='' class='yListName'>精品男装</a><a href=''class='yListMore'>更多 ></a>"
-	            			 +"</h3>"
-	            			 +"<p id='pinjie'><a href='' class='ecolor610'>大牌上新4442</a> <a href=''>商场同款223</a> "
-	            			 +"</p>" 
-	            			 +"</div> "
-	            			 +"</div>");
-	
-			            $.each(data1, function (i, dom1) {
-			            
-			            alert(dom1.name+"9090");      		 	
-			                //一个dom就是一个用户对象			            	
-			            	//做拼接		
-		            	
-			            	 $("#pinjie").append("<a href=''>"+dom1.name+"</a>");			            			            	
-			                //"<li class=''>"+"<i class='list-icon-1'></i> "+"<a href='' target='_blank'>"+dom.name+"</a> /"+"<span></span></li>"
-			            	 }); 
-			          		            
+						<!--商品1级菜单  -->
+						<c:forEach items="${list1}" var="dom">
+							<li class=""><i class="list-icon-2"></i> <a href=""
+								target="_blank">${dom.name}</a> / <span></span>
+							</li>
+						</c:forEach>
 
-			         
-		            
-			        },
-		      
-			    }); 
-	            	
-	            	
-	            	
-	            	
-	            	
-	            	
-	            	
-	            	 */
-	            			 
-	            			 
-	            	//===============================================		 
-	                	               
-	            });	            
-
-	        },
-	         
-	    }); 
-	            			 
-	            		});	 
-	            		
-                     </script>
-					
-					
-					
-					 -->
-					
-	<!--============================================================  -->			
-					<!-- <li class="">
-						
-						<i class="list-icon-1"></i> 
-						
-						
-						<a href=""target="_blank">手机</a> /
-						<a href="" target="_blank">数码</a> /
-						<a href="" target="_blank">电脑办公</a> 
-						
-						
-						
-						<span></span></li>
-							
-							
-							
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">女装</a>
-							/<a href="" target="_blank">内衣</a> <span></span></li>
-							
-							
-							
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">男装</a>
-							/<a href="" target="_blank">运动户外</a> <span></span></li>
-							
-							
-								<li><i class="list-icon-1"></i> <a href="" target="_blank">男装</a>
-							/<a href="" target="_blank">运动5555户外</a> <span></span></li>
-							
-							
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">女鞋</a>
-							/<a href="" target="_blank">男鞋</a> /<a href="" target="_blank">箱包</a>
-							<span></span></li>
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">化妆品</a>
-							/<a href="" target="_blank">个人护理</a> <span></span></li>
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">母婴玩具</a> 
-							<span></span></li>
-							
-					 	<li><i class="list-icon-2"></i> <a href="" target="_blank">零食</a>
-							/<a href="" target="_blank">进口食品</a> /<a href="" target="_blank">酒</a>
-							<span></span></li>
-							
-							<li><i class="list-icon-2"></i> <a href="" target="_blank">零食44444444</a>
-							/<a href="" target="_blank">进口食品44444444444444</a> <span></span></li>	
-							 -->
-							 
-							 
-							 
-							 
-							 
-							 
-							 
-				 		 
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">大家电</a>
-							/<a href="" target="_blank">生活电器</a> <span></span></li>
-							
-						<!--		
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">家具建材</a>
-							<span></span></li> 
-							 -->
-							
-						<!-- <li><i class="list-icon-2"></i> <a href="" target="_blank">珠宝饰品</a>
-							/<a href="" target="_blank">腕表眼镜</a> <span></span></li>
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">汽车</a>
-							/<a href="" target="_blank">配件</a> /<a href="" target="_blank">用品</a>
-							<span></span></li>
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">家纺</a>
-							/<a href="" target="_blank">家饰</a> /<a href="" target="_blank">鲜花</a>
-							<span></span></li>
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">医药保健</a>
-							<span></span></li>
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">厨具</a>
-							/<a href="" target="_blank">收纳</a> /<a href="" target="_blank">宠物</a>
-							<span></span></li>
-							
-						<li><i class="list-icon-2"></i> <a href="" target="_blank">图书音像</a>
-							<span></span></li>  -->
 					</ul>
-					
-					
-					
-					
+
+
+					<!--============================================================  -->
+
+
 					<!-- 下拉详细列表具体分类 -->
 					<div class="yMenuListCon">
 					
 					
 					
-					<c:forEach items="${lists2}"  var="dom2" varStatus="ta">
-					
-					
-					
-					<script type="text/javascript">
-					//alert('${ta.index}');
-					
-					//alert("pinjie"+'${ta.index}');
-					
-						$(function(){
-					
-	            			  $(".yMenuListCon").append("<div class='yMenuListConin'>"
-	            			 +"<div class='yMenuLCinList'>"
-	            			 +"<h3>"
-	            			 +"<a href='' class='yListName'>精品男装</a><a href=''class='yListMore'>更多 ></a>"
-	            			 +"</h3>"
-	            			
-	            			 +"<p  id=pinjie"+'${ta.index}'+">  " /* <a href='#' class='ecolor610'>大牌上新</a> <a href='my-all.jsp'>商场同款</a> */
-	            			 +"</p>" 
-	            			 
-	            			
-	            			 
-	            			 +"</div> "
-	            			 +"</div>");
-	            			 
-	            			 });	
-	            			
-                     </script>
-                     
-                     
-                      <c:forEach items="${dom2}"  var="dom1">
-                                                                
-                      <script type="text/javascript">
-                      
-                      
-                     // alert("3333333111");
-                     
-                      	$(function(){
-                   
-	            			  $("#pinjie"+'${ta.index}').append("<a  href=ProductCategoryServlet?methon=sanjiye&mingzi="+'${dom1.name}'+"&id="+'${dom1.id}'+">"+'${dom1.name}'+"</a>");	
-	            			  
-	            			  
-	            			  	            			         			  
-	            			  });	
-	            			  
-	            		  // $(".yMenuListCon").lastElementChild.lastElementChild.lastElementChild.append("<a href=''>"+'${dom1.name}'+"444422S"+"</a>");	  
-	            			  
-	            			    </script>
-	            			 	</c:forEach>
-	            			 	
-	            			 	
-					</c:forEach>
-					
-					
-					
-					
-					
-					
-					
-					  
-            <!--           <script type="text/javascript">
-                      
-                      	$(function(){
-					
-					   
+						<c:forEach items="${list1}" var="dom1">
+							<div class="yMenuListConin">
+								<c:forEach items="${list2}" var="dom2" varStatus="ta">
+									<c:if test="${dom1.id==dom2.parentId}">
+										<div class="yMenuLCinList">
+											<h3>
+												<a href="" class="yListName">${dom2.name}</a><a href=""
+													class="yListMore">更多 ></a>
+											</h3>
+											<p>
+												<c:forEach items="${list3}" var="dom3" varStatus="ta">
 
-					
-					});
-					
-					
-					
-				 </script>	
-					
-					 -->
-					
-					
-					
-					
-					
-					
-					
-				<!-- 	
-					
-					
-					
-					
-						 <div class="yMenuListConin">
-						
-						
-							<div class="yMenuLCinList">
-							
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
+													<c:if test="${dom2.id==dom3.parentId}">
+														<a
+															href="ProductServlet?method=sanjiye&id=${dom3.id}&mingzi=${dom3.name}"
+															class="ecolor610">${dom3.name}</a>
+														<!-- <a href="">商场同款</a> <a
+										                  href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
+														 -->
+													</c:if>
+												</c:forEach>
+											</p>
+										</div>
+									</c:if>
+								</c:forEach>
+								<!--  2-->
 							</div>
-							
-							
-							
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-							
-							
-							
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-						
-						
-						
-						
-						
-						
-
-						<div class="yMenuListConin">
-							
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div> -->
-						
-						
-
-						<!-- <div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装1</a><a href=""
-										class="yListMore">更多1 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新1</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒1 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> 
-									<a href="">商场同款</a>
-									 <a href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> 
-										<a href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> 
-										<a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> 
-										<a href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a>
-										 <a href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
- -->
-						<!-- <div class="yMenuListConin">
-							<div class="yMenuLCinList">
-								<h3>
-									<a href="" class="yListName">精品男装</a><a href=""
-										class="yListMore">更多 ></a>
-								</h3>
-								<p>
-									<a href="" class="ecolor610">大牌上新</a> <a href="">商场同款</a> <a
-										href="">男装集结</a> <a href="">羽绒服</a> <a href="">加厚羽绒 </a> <a
-										href="">高帮鞋</a> <a href="">商场同款</a> <a href="">男装集结</a> <a
-										href="">羽绒服</a> <a href="">加厚羽绒 </a> <a href="">高帮鞋</a> <a
-										href="">商场同款</a> <a href="">男装集结</a> <a href="">羽绒服</a> <a
-										href="">加厚羽绒 </a> <a href="">高帮鞋</a>
-								</p>
-							</div>
-						</div>
- -->
-				
+						</c:forEach>
+						<!--  1-->
 					</div>
 
-				
-				
-				
-				
-				
 				</div>
-				
-				
+
+
 				<ul class="yMenuIndex">
-					<li><a href="" target="_blank">首页</a>
-					</li>
-					<li><a href="" target="_blank">云购物 </a>
-					</li>
-					<li><a href="" target="_blank">限时购</a>
-					</li>
-					<li><a href="" target="_blank">电器城</a>
-					</li>
-					<li><a href="" target="_blank">家具城</a>
-					</li>
-					<li><a href="" target="_blank">母婴专场</a>
-					</li>
-					<li><a href="" target="_blank">数码专场</a>
-					</li>
+					<li><a href="" target="_blank">首页</a></li>
+					<li><a href="" target="_blank">云购物 </a></li>
+					<li><a href="" target="_blank">限时购</a></li>
+					<li><a href="" target="_blank">电器城</a></li>
+					<li><a href="" target="_blank">家具城</a></li>
+					<li><a href="" target="_blank">母婴专场</a></li>
+					<li><a href="" target="_blank">数码专场</a></li>
 				</ul>
 			</div>
 			<!-- 导航   end  -->
@@ -927,8 +329,8 @@
 
 		<!-- banner  -->
 		<div class="yBanner">
-		
-		
+
+
 			<div class="yBannerList">
 				<div class="yBannerListIn">
 					<a href=""><img class="ymainBanner" src="images/banner1.jpg"
@@ -996,6 +398,9 @@
 						<em style="color:#fff">后结束抢购</em>
 					</div>
 				</div>
+
+
+
 				<div class="pc-list-goods">
 					<div class="flashSale_wrap">
 						<div class="flashSale area">
@@ -1004,303 +409,15 @@
 									<div class="flashSaleDeals">
 										<div class="v_cont" style="width:9648px;overflow: hidden">
 											<ul class="flder">
-												<li index="0">
-													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="page.jsp" target="_blank">
-															<div class="dealCon">
-																<img class="dealImg" src="images/xlqg1.jpg" alt="">
-																<div class="zt2Qrcode overlay">
-																	<div class="xsqMask"></div>
-																	<p class="word1">15:00开抢</p>
-																	<p class="word2">限100件，抢完恢复25.8元</p>
-																	<p class="word3">查看商品&gt;&gt;</p>
-																</div>
-																<!--<span class="soldOut xsqIcon"></span>-->
-															</div>
-															<div class="title_new">
-																<p class="word" title="YDA-826E 除湿机家用抽湿机除湿器（除湿、干衣力荐）">YDA-826E
-																	除湿机家用抽湿机除湿器（除湿、干衣力荐）</p>
-															</div>
-															<div class="dealInfo">
-																<span class="price">¥<em>299</em> </span> <span
-																	class="shop_preferential">满2件8.8折</span>
-															</div> </a>
-													</div>
-													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="" target="_blank">
-															<div class="dealCon">
-																<img class="dealImg" src="images/xlqg2.jpg" alt="">
-																<div class="zt2Qrcode overlay">
-																	<div class="xsqMask"></div>
-																	<p class="word1">15:00开抢</p>
-																	<p class="word2">限100件，抢完恢复25.8元</p>
-																	<p class="word3">查看商品&gt;&gt;</p>
-																</div>
-																<div class="stock">
-																	<div class="xsqMask"></div>
-																	<span class="stockWord"><i class="stocknumber">还剩73件</i>
-																		抢完恢复原价16.8元</span>
-																</div>
-															</div>
-															<div class="title_new">
-																<p class="word" title="升级版原汁机低速榨汁机HUZK24WNM ">
-																	<span class="baoyouText">[包邮]</span>升级版原汁机低速榨汁机HUZK24WNM
-																</p>
-															</div>
-															<div class="dealInfo">
-																<span class="price">¥<em>1980</em> </span> <span
-																	class="shop_preferential">满2件8.8折</span>
-															</div> </a>
-													</div>
-													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="" target="_blank">
-															<div class="dealCon">
-																<img class="dealImg" src="images/xlqg3.jpg" alt="">
-																<div class="finish overlay">
-																	<div class="xsqMask"></div>
-																	<p class="word1">15:00开抢</p>
-																	<p class="word2">限100件，抢完恢复25.8元</p>
-																	<p class="word3">查看商品&gt;&gt;</p>
-																</div>
-																<span class="finishIcon xsqIcon"></span>
-															</div>
-															<div class="title_new">
-																<p class="word" title="飞利浦PHILIPS刷头HX6013标准3支装 ">
-																	<span class="baoyouText">[包邮]</span>飞利浦PHILIPS刷头HX6013标准3支装
-																</p>
-															</div>
-															<div class="dealInfo">
-																<span class="price">¥<em>149</em> </span> <span
-																	class="shop_preferential">满2件8.8折</span>
-															</div> </a>
-													</div>
-													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="" target="_blank">
-															<div class="dealCon">
-																<img class="dealImg" src="images/xlqg4.jpg" alt="">
-																<div class="zt2Qrcode overlay">
-																	<div class="xsqMask"></div>
-																	<p class="word1">15:00开抢</p>
-																	<p class="word2">限100件，抢完恢复25.8元</p>
-																	<p class="word3">查看商品&gt;&gt;</p>
-																</div>
-																<div class="stock">
-																	<div class="xsqMask"></div>
-																	<span class="stockWord"><i class="stocknumber">还剩73件</i>
-																		抢完恢复原价16.8元</span>
-																</div>
-															</div>
-															<div class="title_new">
-																<p class="word" title="贝拉米 Bellamy’s 婴幼儿有机奶粉3段">
-																	<span class="baoyouText">[包邮]</span>贝拉米 Bellamy’s
-																	婴幼儿有机奶粉3段
-																</p>
-															</div>
-															<div class="dealInfo">
-																<span class="price">¥<em>199</em> </span> <span
-																	class="shop_preferential">满2件8.8折</span>
-															</div> </a>
-													</div>
-													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="" target="_blank">
-															<div class="dealCon">
-																<img class="dealImg" src="images/xlqg5.jpg" alt="">
-																<div class="zt2Qrcode overlay">
-																	<div class="xsqMask"></div>
-																	<p class="word1">15:00开抢</p>
-																	<p class="word2">限100件，抢完恢复25.8元</p>
-																	<p class="word3">查看商品&gt;&gt;</p>
-																</div>
-																<div class="stock">
-																	<div class="xsqMask"></div>
-																	<span class="stockWord"><i class="stocknumber">还剩73件</i>
-																		抢完恢复原价16.8元</span>
-																</div>
-															</div>
-															<div class="title_new">
-																<p class="word" title="925银流苏珍珠耳坠耳钉">
-																	<span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉
-																</p>
-															</div>
-															<div class="dealInfo">
-																<span class="price">¥<em>1</em> </span> <span
-																	class="shop_preferential">满2件8.8折</span>
-															</div> </a>
-													</div>
-													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="" target="_blank">
-															<div class="dealCon">
-																<img class="dealImg" src="images/xlqg6.jpg" alt="">
-																<div class="zt2Qrcode overlay">
-																	<div class="xsqMask"></div>
-																	<p class="word1">15:00开抢</p>
-																	<p class="word2">限100件，抢完恢复25.8元</p>
-																	<p class="word3">查看商品&gt;&gt;</p>
-																</div>
-																<div class="stock">
-																	<div class="xsqMask"></div>
-																	<span class="stockWord"><i class="stocknumber">还剩73件</i>
-																		抢完恢复原价16.8元</span>
-																</div>
-															</div>
-															<div class="title_new">
-																<p class="word" title="925银流苏珍珠耳坠耳钉">
-																	<span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉
-																</p>
-															</div>
-															<div class="dealInfo">
-																<span class="price">¥<em>1</em> </span> <span
-																	class="shop_preferential">满2件8.8折</span>
-															</div> </a>
-													</div></li>
-												<li index="1">
-													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="" target="_blank">
-															<div class="dealCon">
-																<img class="dealImg" src="images/xlqg7.jpg" alt="">
-																<div class="zt2Qrcode overlay">
-																	<div class="xsqMask"></div>
-																	<p class="word1">15:00开抢</p>
-																	<p class="word2">限100件，抢完恢复25.8元</p>
-																	<p class="word3">查看商品&gt;&gt;</p>
-																</div>
-															</div>
-															<div class="title_new">
-																<p class="word" title="925银流苏珍珠耳坠耳钉">
-																	<span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉
-																</p>
-															</div>
-															<div class="dealInfo">
-																<span class="price">¥<em>2</em> </span> <span
-																	class="shop_preferential">满2件8.8折</span>
-															</div> </a>
-													</div>
-													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="" target="_blank">
-															<div class="dealCon">
-																<img class="dealImg" src="images/xlqg8.jpg" alt="">
-																<div class="zt2Qrcode overlay">
-																	<div class="xsqMask"></div>
-																	<p class="word1">15:00开抢</p>
-																	<p class="word2">限100件，抢完恢复25.8元</p>
-																	<p class="word3">查看商品&gt;&gt;</p>
-																</div>
-																<div class="stock">
-																	<div class="xsqMask"></div>
-																	<span class="stockWord"><i class="stocknumber">还剩73件</i>
-																		抢完恢复原价16.8元</span>
-																</div>
-															</div>
-															<div class="title_new">
-																<p class="word" title="925银流苏珍珠耳坠耳钉">
-																	<span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉
-																</p>
-															</div>
-															<div class="dealInfo">
-																<span class="price">¥<em>2</em> </span> <span
-																	class="shop_preferential">满2件8.8折</span>
-															</div> </a>
-													</div>
-													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="" target="_blank">
-															<div class="dealCon">
-																<img class="dealImg" src="images/xlqg9.jpg" alt="">
-																<div class="finish overlay">
-																	<div class="xsqMask"></div>
-																	<p class="word1">15:00开抢</p>
-																	<p class="word2">限100件，抢完恢复25.8元</p>
-																	<p class="word3">查看商品&gt;&gt;</p>
-																</div>
-																<span class="finishIcon xsqIcon"></span>
-															</div>
-															<div class="title_new">
-																<p class="word" title="925银流苏珍珠耳坠耳钉">
-																	<span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉
-																</p>
-															</div>
-															<div class="dealInfo">
-																<span class="price">¥<em>2</em> </span> <span
-																	class="shop_preferential">满2件8.8折</span>
-															</div> </a>
-													</div>
-													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="" target="_blank">
-															<div class="dealCon">
-																<img class="dealImg" src="images/xlqg10.jpg" alt="">
-																<div class="zt2Qrcode overlay">
-																	<div class="xsqMask"></div>
-																	<p class="word1">15:00开抢</p>
-																	<p class="word2">限100件，抢完恢复25.8元</p>
-																	<p class="word3">查看商品&gt;&gt;</p>
-																</div>
-																<div class="stock">
-																	<div class="xsqMask"></div>
-																	<span class="stockWord"><i class="stocknumber">还剩73件</i>
-																		抢完恢复原价16.8元</span>
-																</div>
-															</div>
-															<div class="title_new">
-																<p class="word" title="925银流苏珍珠耳坠耳钉">
-																	<span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉
-																</p>
-															</div>
-															<div class="dealInfo">
-																<span class="price">¥<em>2</em> </span> <span
-																	class="shop_preferential">满2件8.8折</span>
-															</div> </a>
-													</div>
-													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="" target="_blank">
-															<div class="dealCon">
-																<img class="dealImg" src="images/xlqg11.jpg" alt="">
-																<div class="zt2Qrcode overlay">
-																	<div class="xsqMask"></div>
-																	<p class="word1">15:00开抢</p>
-																	<p class="word2">限100件，抢完恢复25.8元</p>
-																	<p class="word3">查看商品&gt;&gt;</p>
-																</div>
-																<div class="stock">
-																	<div class="xsqMask"></div>
-																	<span class="stockWord"><i class="stocknumber">还剩73件</i>
-																		抢完恢复原价16.8元</span>
-																</div>
-															</div>
-															<div class="title_new">
-																<p class="word" title="925银流苏珍珠耳坠耳钉">
-																	<span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉
-																</p>
-															</div>
-															<div class="dealInfo">
-																<span class="price">¥<em>2</em> </span> <span
-																	class="shop_preferential">满2件8.8折</span>
-															</div> </a>
-													</div>
-													<div class="xsq_deal_wrapper">
-														<a class="saleDeal" href="" target="_blank">
-															<div class="dealCon">
-																<img class="dealImg" src="images/xlqg12.jpg" alt="">
-																<div class="zt2Qrcode overlay">
-																	<div class="xsqMask"></div>
-																	<p class="word1">15:00开抢</p>
-																	<p class="word2">限100件，抢完恢复25.8元</p>
-																	<p class="word3">查看商品&gt;&gt;</p>
-																</div>
-																<div class="stock">
-																	<div class="xsqMask"></div>
-																	<span class="stockWord"><i class="stocknumber">还剩73件</i>
-																		抢完恢复原价16.8元</span>
-																</div>
-															</div>
-															<div class="title_new">
-																<p class="word" title="925银流苏珍珠耳坠耳钉">
-																	<span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉
-																</p>
-															</div>
-															<div class="dealInfo">
-																<span class="price">¥<em>2</em> </span> <span
-																	class="shop_preferential">满2件8.8折</span>
-															</div> </a>
-													</div></li>
+
+
+
+
+												<li index="0" id="li1"></li>
+												<li index="1" id="li2"></li>
+
+
+
 											</ul>
 											<a href="javascript:;" class="zuo trigger"></a> <a
 												href="javascript:;" class="you trigger"></a>
@@ -1839,13 +956,16 @@
 					</li>
 					<li class="lw"><span>购物指南</span> <a href="#">新手上路</a> <a
 						href="#">订单查询</a> <a href="#">会员介绍</a> <a href="#">网站服务条款</a> <a
-						href="#">帮助中心</a></li>
+						href="#">帮助中心</a>
+					</li>
 					<li class="lw"><span>消费者保障</span> <a href="#">人工验货</a> <a
 						href="#">退货退款政策</a> <a href="#">运费补贴卡</a> <a href="#">无忧售后</a> <a
-						href="#">先行赔付</a></li>
+						href="#">先行赔付</a>
+					</li>
 					<li class="lw"><span>商务合作</span> <a href="#">人工验货</a> <a
 						href="#">退货退款政策</a> <a href="#">运费补贴卡</a> <a href="#">无忧售后</a> <a
-						href="#">先行赔付</a></li>
+						href="#">先行赔付</a>
+					</li>
 					<li class="lss"><span>下载手机版</span>
 						<div class="clearfix lss-pa">
 							<div class="fl lss-img">
@@ -1857,7 +977,8 @@
 								<P>把潮流带在身边</P>
 								<P></P>
 							</div>
-						</div></li>
+						</div>
+					</li>
 				</ul>
 			</div>
 			<div class="pc-footer-lin">
@@ -1930,8 +1051,128 @@
 		
 		
 	</script>
-	
-	
+
+	<script type="text/javascript">
+/*  动态获取数据，并拼接      */  
+load(0);  //默认初始化,pageNum为0
+var data;
+function  load(pageNum) {
+       $.ajax({
+           url: "ProductServlet?method=def",  //需要提交的服务器地址
+           type: "post",  //请求的方式
+           data: {"pageNum": pageNum},  //传递给服务器的参数
+           success: function (data) {  //回调函数
+           data=$.parseJSON(data);//从数据库获得的json对象，已经包含查询回来的数据                       
+               //清空数据
+$("#li1").html('');
+$("#li2").html('');
+               //追加数据  data.list需要遍历的集合  list必须是pageInfo中的属性名
+ $.each(data, function (i, news) {i//是下标
+ //在表格中拼接
+ if(i<=5){
+ $("#li1").append(
+ "<div class='xsq_deal_wrapper'>"
+ +"<a class='saleDeal' href='page.jsp?id="+news.id+"' target='_blank'>"
+ +"<div class='dealCon'>"
+ +"<img class='dealImg' src='images/xlqg1.jpg' alt=''>"
+ +"<div class='zt2Qrcode overlay'>"
+ +"<div class='xsqMask'></div>"	
+ +"<p class='word1'>15:00开抢</p>"
+ +"	<p class='word2'>限100件，抢完恢复25.8元</p>"		
+ +"<p class='word3'>查看商品&gt;&gt;</p>"			
+ +"</div>"
+ +"</div>"
+ +"<div class='title_new'>"		
+ +"<p class='word' title='"+news.name+"'>"+news.name+"</p>"	
+ +"</div>"	
+ +"<div class='dealInfo'>"
+ +"<span class='price'>¥<em>"+news.price+"</em></span>"
+ +"<span class='shop_preferential'>满2件8.8折</span>"
+ +"</div>"
+ +"</a>"
+ +"</div>"
+ );
+ }else{
+ $("#li2").append(
+ "<div class='xsq_deal_wrapper'>"
+ +"<a class='saleDeal' href='page.jsp?id="+news.id+"' target='_blank'>"
+ +"<div class='dealCon'>"
+ +"<img class='dealImg' src='images/xlqg7.jpg' alt=''>"
+ +"<div class='zt2Qrcode overlay'>"
+ +"<div class='xsqMask'></div>"	
+ +"<p class='word1'>15:00开抢</p>"
+ +"	<p class='word2'>限100件，抢完恢复25.8元</p>"		
+ +"<p class='word3'>查看商品&gt;&gt;</p>"			
+ +"</div>"
+ +"</div>"
+ +"<div class='title_new'>"		
+ +"<p class='word' title='"+news.name+"'><span class='baoyouText'>[包邮]</span>"+news.name+"</p>"	
+ +"</div>"	
+ +"<div class='dealInfo'>"
+ +"<span class='price'>¥<em>"+news.price+"</em></span>"
+ +"<span class='shop_preferential'>满2件8.8折</span>"
+ +"</div>"
+ +"</a>"
+ +"</div>"
+ );
+ }                      
+               });
+           }
+       });
+   };
+   
+   
+   
+   /* 模糊查询 */
+    $("#key").keyup(function(event){
+  				var gg= $("#key").val();
+  				if(event.keyCode!=13&&gg!=null){
+  				
+  				load(gg);  //默认初始化,pageNum为0
+				var data;
+				function  load(pageNum) {
+       			$.ajax({
+          		 url: "ProductServlet?method=like",  //需要提交的服务器地址
+          		 type: "post",  //请求的方式
+          		 data: {"pageNum": pageNum},  //传递给服务器的参数
+           		 success: function (data) {  //回调函数
+          		 data=$.parseJSON(data);//从数据库获得的json对象，已经包含查询回来的数据 
+          		 	$(".topDown1").html('');
+          		     $.each(data, function (i, news) {
+          		     	$(".topDown1").append(
+          		     		"<li><a href='page.jsp?id="+news.id+"'>"+news.name+"</a></li>"
+          		     	);
+          		     
+          		     });   
+          		}               
+  				});
+  				}
+  				
+  				
+  				$(".topDown1").show();
+  				
+  				}
+  				if(gg==""){
+  				$(".topDown1").hide();
+  				}
+  				
+		});
+		
+
+ $(".topDown1").hide();
+        $("#key").focus( function(){
+        var gg= $("#key").val();
+        	if(gg==""){
+        	$(".topDown1").hide();
+        	}else{
+        	$(".topDown1").show();
+        	}
+        });
+		
+   
+</script>
+
+
 
 
 
