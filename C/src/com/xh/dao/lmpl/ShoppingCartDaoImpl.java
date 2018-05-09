@@ -38,8 +38,8 @@ public class ShoppingCartDaoImpl extends JdbcUtil implements ShoppingCartDao{
 	public int update(ShoppingCart t) {
 		int result=0;
 		//String sql="update shopping_cart set productId=?,productNum=? where userId=? and productId=?";
-		String sql="update shopping_cart set productId=?,productNum=? where userId=? and productId=?";
-		Object[] objects={t.getProductId(),t.getProductNum(),t.getUserId(),t.getProductId()};
+		String sql="update shopping_cart set productNum=? where userId=? and productId=?";
+		Object[] objects={t.getProductNum(),t.getUserId(),t.getProductId()};
 		result=exceuteUpdate(sql,objects);
 		return result;
 	}

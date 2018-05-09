@@ -11,8 +11,7 @@ import java.sql.Timestamp;
  *
  */
 
-public  class UserAddress implements
-		java.io.Serializable {
+public  class UserAddress implements java.io.Serializable {
 
 	// Fields
 

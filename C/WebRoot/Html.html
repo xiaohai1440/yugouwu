@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Html.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+    This is my HTML page. <br>
+    <div class="xm-edit-addr-box" id="J_editAddrBox">
+									<div class="bd">
+										<div class="item">
+											<label>收货人姓名<span>*</span></label>
+											<input type="text" name="userAddress[consignee]" id="Consignee" class="input" placeholder="收货人姓名" maxlength="15" autocomplete='off'>
+											<p class="tip-msg tipMsg"></p>
+										</div>
+										<div class="item">
+											<label>联系电话<span>*</span></label>
+											<input type="text" name="userAddress[tel]" class="input" id="Telephone" placeholder="11位手机号" autocomplete='off'>
+											<p class="tel-modify-tip" id="telModifyTip"></p>
+											<p class="tip-msg tipMsg"></p>
+										</div>
+										<div class="item">
+											<label>地址<span>*</span></label>
+											<select name="userAddress[province]" id="Provinces" class="select-1">
+												<option>省份/自治区</option>
+												<option>省份/自治区</option>
+												<option>省份/自治区</option>
+											</select>
+											<select name="userAddress[city]"  id="Citys" class="select-2" ><!--disabled 只读 -->
+												<option>城市/地区/自治州</option>
+												<option>城市/地区/自治州</option>
+												<option>城市/地区/自治州</option>
+												<option>城市/地区/自治州</option>
+											</select>
+											<select name="userAddress[county]"  id="Countys" class="select-3" >
+												<option>区/县</option>
+												<option>区/县</option>
+												<option>区/县</option>
+											</select>
+											<p class="tip-msg tipMsg">详细地址/<span style="color:red  ;font-size:20px" >路名或街道地址，门牌号 </span> </p>
+											<textarea   name="" class="" id="" ></textarea>
+											<p></p>
+										</div>
+										
+										<div class="item">
+											<label>邮政编码<span>*</span></label>
+											<input type="text" name="userAddress[zipcode]" id="Zipcode" class="input" placeholder="邮政编码"  autocomplete='off'>
+											<p class="zipcode-tip" id="zipcodeTip"></p>
+											<p class="tip-msg tipMsg"></p>
+										</div>
+										<div class="item">
+											<label>地址标签<span>*</span></label>
+											<input type="text" name="userAddress[tag]" id="Tag" class="input" placeholder='地址标签：如"家"、"公司"。限5个字内'  >
+											<p class="tip-msg tipMsg"></p>
+										</div>
+									</div>
+									<div class="ft clearfix">
+										<button  type="button"  class="btn btn-lineDake btn-small " id="J_editAddrCancel">取消</button>
+										<button type="button" class="btn btn-primary  btn-small " id="J_editAddrOk">保存</button>
+									</div>
+								</div>
+								
+								
+								
+								<hr>
+    
+    
+  </body>
+</html>

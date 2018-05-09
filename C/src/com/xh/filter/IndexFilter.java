@@ -41,8 +41,8 @@ public class IndexFilter implements Filter {
 			FilterChain arg2) throws IOException, ServletException {
 
 		//接口，子接口
-		/*HttpServletRequest  req= (HttpServletRequest)request;
-		HttpServletResponse  resq= (HttpServletResponse)response;
+		HttpServletRequest  req= (HttpServletRequest)request;
+		/*HttpServletResponse  resq= (HttpServletResponse)response;
 		String path = req.getRequestURI();//获取的请求的uri
 
 		HttpServletRequest  req= (HttpServletRequest)request;
@@ -87,6 +87,24 @@ public class IndexFilter implements Filter {
 			List<ProductCategory> product = p.getProduct2(i);//type/1、2	、3
 			request.setAttribute("list"+i, product);	
 		}
+		
+		/*if (user!=null) {
+			//req.setAttribute("product", product);
+			resp.sendRedirect("BrowsingServlet1?method=1&user11="+product.getId());
+			//req.getRequestDispatcher("BrowsingServlet1?method=1&user="+user.getId()).forward(req, resp);
+
+		}*/
+	/*	String path = req.getRequestURI();
+		if (req.getSession().getAttribute("user")!=null&&path.contains("page.jsp")) {
+			
+			System.err.println("req.getSession().getAttribute()!=null&&path.contains(777---》"+req.getParameter("id"));
+			//req.setAttribute("product", product);
+			((HttpServletResponse) response).sendRedirect("BrowsingServlet1?method=1&user11="+req.getParameter("id"));
+			//req.getRequestDispatcher("BrowsingServlet1?method=1&user="+user.getId()).forward(req, resp);
+
+		}
+		System.err.println("req.getSession().getAttribute()!=null&&path.contain8888");*/
+		
 		arg2.doFilter(request, response);
 	}
 

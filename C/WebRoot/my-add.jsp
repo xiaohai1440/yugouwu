@@ -1,5 +1,5 @@
-
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +11,60 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
 	<meta name="renderer" content="webkit">
 	<title>确认订单-云购物商城</title>
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/base.css">
 	<link rel="stylesheet" type="text/css" href="css/home.css">
 	<link rel="stylesheet" type="text/css" href="css/car/base.css">
 	<link rel="stylesheet" type="text/css" href="css/car/home.css">
+	<style>
+		.topDown{
+			position: absolute;
+			background-color:rgba(128,128,128,0.8);
+			z-index:5;
+			width:200px;
+			border:1px red solid;
+		}
+		#myModal{
+			heigth:500px;
+			overflow:hidden;
+			overflow-x:hidden;
+			border-radius:5px;
+		}
+		.modal-dialog{
+		
+		margin:0px auto;
+		}
+	</style>
+	<script type="text/javascript">
+    //hover 触发两个事件，鼠标移上去和移走
+    //mousehover 只触发移上去事件
+    $(".top-nav ul li").hover(function(){
+        $(this).addClass("hover").siblings().removeClass("hover");
+        $(this).find("li .nav a").addClass("hover");
+        $(this).find(".con").show();
+    },function(){
+        //$(this).css("background-color","#f5f5f5");
+        $(this).find(".con").hide();
+        //$(this).find(".nav a").removeClass("hover");
+        $(this).removeClass("hover");
+        $(this).find(".nav a").removeClass("hover");
+    });
+    
+    /* 模态窗口 */
+  $(function(){
+ $("#J_useNewAddr").click(function () {
+    $("#myModal").modal("show")  ;    
+ });
+
+
+});
+
+
+
+</script>
 
 </head>
 <body>
@@ -23,7 +72,23 @@
 <header id="pc-header">
 	<div class="pc-header-nav">
 		<div class="pc-header-con">
-			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="login.html" target="_blank">请登录</a> <a href="register.html" target="_blank"> 免费注册</a></div>
+			<div class="fl pc-header-link" >
+			<c:choose>
+				<c:when test="${not empty sessionScope.user}">
+					您好！，<a href="#" class="menu-btn"><c:out value="${sessionScope.user.userName}"></c:out></a>
+					<ul class="topDown" style="display:none"><!-- style="display:none" -->
+                    <li><a href="#">我的账号</a></li>
+                    <li><a href="#">我的余额</a></li>
+                    <li><a href="exit.jsp">退出登录</a></li>
+                   <!--  <li><a href="">我的评论</a></li>
+                    <li><a href="">电子书架</a></li> -->
+                </ul>欢迎来云购物
+				</c:when>
+				<c:when test="${empty sessionScope.user}">
+					您好！，欢迎来云购物 <a href="login.jsp" target="_blank">请登录</a> <a href="register.jsp" target="_blank"> 免费注册</a>
+				</c:when>
+			</c:choose>
+			</div>
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
@@ -60,7 +125,7 @@
 	<div class="pc-header-logo clearfix">
 		<div class="pc-fl-logo fl">
 			<h1>
-				<a href="index.html"></a>
+				<a href="index.jsp"></a>
 			</h1>
 		</div>
 		<div class="head-form fl">
@@ -165,7 +230,7 @@
 										使用新地址
 									</div>
 								</div>
-								<input type="hidden" name="newAddress[type]" id="newType" value="common">
+						<!-- 		<input type="hidden" name="newAddress[type]" id="newType" value="common">
 								<input type="hidden" name="newAddress[consignee]" id="newConsignee">
 								<input type="hidden" name="newAddress[province]" id="newProvince">
 								<input type="hidden" name="newAddress[city]" id="newCity">
@@ -173,9 +238,80 @@
 								<input type="hidden" name="newAddress[address]" id="newStreet">
 								<input type="hidden" name="newAddress[zipcode]" id="newZipcode">
 								<input type="hidden" name="newAddress[tel]" id="newTel">
-								<input type="hidden" name="newAddress[tag_name]" id="newTag">
+								<input type="hidden" name="newAddress[tag_name]" id="newTag"> -->
+								
+	<!-- 模态窗口新增地址 -->					
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">新增</h4>
+                  </div>
+                  <div class="modal-body">
+  
+                     <div class="form-group">
+                         <label for="txt_departmentname">收货人姓名<span>*</span></label>
+                         <input type="text" name="txt_departmentname" class="form-control" id="txt_departmentname" placeholder="收货人姓名">
+                     </div>
+                     <div class="form-group">
+                         <label for="txt_parentdepartment">联系电话<span>*</span></label>
+                         <input type="text" name="txt_parentdepartment" class="form-control" id="txt_parentdepartment" placeholder="11位手机号">
+                     </div>
+                     <div class="item">
+								<label>地址<span>*</span></label>
+								<select name="userAddress" id="Provinces" class="select1">
+									<option class="option1" >省份/自治区</option>	
+									
+									
+
+									<!-- <option class="option1" value="4">省份/自治区</option>	
+									<option class="option1"  value="5">省份/自治区</option>	
+									<option class="option1"  value="6">asdadas</option>	 -->							
+								</select>
+								<select name="userAddress"  id="Citys" class="select2">
+									<option class="option2">城市/地区/自治州</option>
+								</select>
+								<select name="userAddress"  id="Countys" class="select3" >
+									<option class="option3">区/县</option>
+									
+								</select>
+								<p class="tip-msg tipMsg">详细地址/<span style="color:red  ;font-size:10px" >路名或街道地址，门牌号 </span> </p>
+								<textarea   name="" class="" id=""  cols="50" rows="5"></textarea>
+								<p></p>
+								
+						</div>
+						
+						
+                     <div class="form-group">
+                         <label for="txt_departmentlevel">邮政编码<span>*</span></label>
+                         <input type="text" name="txt_departmentlevel" class="form-control" id="txt_departmentlevel" placeholder="邮政编码">
+                     </div>
+                     <!-- <div class="form-group">
+                         <label for="txt_statu">状态<span>*</span></label>
+                         <input type="text" name="txt_statu" class="form-control" id="txt_statu" placeholder="状态">
+                     </div> -->
+                 </div>
+                 </form>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                     <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+								
+								
+								
+								
+								
+								
+								
+								
+								
 								<!--点击弹出新增/收货地址界面start-->
-								<div class="xm-edit-addr-box" id="J_editAddrBox">
+				<!-- 				<div class="xm-edit-addr-box" id="J_editAddrBox">
 									<div class="bd">
 										<div class="item">
 											<label>收货人姓名<span>*</span></label>
@@ -218,10 +354,61 @@
 										<button  type="button"  class="btn btn-lineDake btn-small " id="J_editAddrCancel">取消</button>
 										<button type="button" class="btn btn-primary  btn-small " id="J_editAddrOk">保存</button>
 									</div>
-								</div>
+								</div> -->
 								<!--点击弹出新增/收货地址界面end-->
-								<div class="xm-edit-addr-backdrop" id="J_editAddrBackdrop"></div>
-							</div>                </div>
+								<!-- <div class="xm-edit-addr-backdrop" id="J_editAddrBackdrop"></div> -->
+							</div>                
+							</div>
+							
+							
+							
+																<script>
+							$("#Provinces").click(
+function (){
+
+window.location.href="https://www.baidu.com";	
+	
+ alert("7777777777777777777");
+	/*load();  //默认初始化,pageNum为0*/
+	
+      		/* 	 $.ajax({
+          		 url: "/Ttt?method=1",  //需要提交的服务器地址
+          		 type: "post",  //请求的方式
+          		 //data: {"pageNum": gg},  //传递给服务器的参数
+           		 success: function (data) {  //回调函数
+          			var data=$.parseJSON(data);//从数据库获得的json对象，已经包含查询回来的数据 
+          			$("#Provinces").html('');
+          		     $.each(data, function (i, news) {
+          		     	$("#Provinces").append(
+          		     		"<option class='option1'  value="+news.provinceid">"+news.province+"</option>"
+          		     	);
+          		     });
+          		 }
+          		 });   */
+          		 
+          		 /* 
+          		 	$.ajax({
+          		 url: "AddressServlet?method=1",  //需要提交的服务器地址
+          		 type: "post",  //请求的方式
+          		 
+           		 success: function (data) {  //回调函数
+          		 data=$.parseJSON(data);//从数据库获得的json对象，已经包含查询回来的数据 
+          		 	$(".topDown1").html('');
+          		     $.each(data, function (i, news) {
+          		     	$(".topDown1").append(
+          		     		"<li><a href='page.jsp?id="+news.id+"'>"+news.name+"</a></li>"
+          		     	);
+          		     
+          		     });   
+          		}               
+  				});  */
+ alert("7777777777777777777");
+}
+);
+									
+									</script>
+							
+							
 						<!-- 收货地址 END-->
 						<div id="checkoutPayment">
 							<!-- 支付方式 -->
@@ -473,7 +660,7 @@
 						<div class="checkout-confirm">
 
 							<a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
-							<a href="my-apy.html" class="btn btn-primary">立即下单</a>
+							<a href="my-apy.jsp" class="btn btn-primary">立即下单</a>
 
 						</div>
 					</div>
@@ -558,10 +745,10 @@
 
 
 
-		<script src="js/base.min.js"></script>
+		<!-- <script src="js/base.min.js"></script>
 
 		<script type="text/javascript" src="js/address_all.js"></script>
-		<script type="text/javascript" src="js/checkout.min.js"></script>
+		<script type="text/javascript" src="js/checkout.min.js"></script> -->
 	</div>
 	<!--收货地址body部分结束-->
 </div>
@@ -657,8 +844,81 @@
         $(this).removeClass("hover");
         $(this).find(".nav a").removeClass("hover");
     })
+    
+    
+    
 </script>
+<!-- <script type="text/javascript">
 
+/*当点击省份下拉框时触发事件  获取省份数据  ，渲染到前台 */
+	/* $("#Provinces").click(function(){
+	alert("进入Provinces");
+				load();  //默认初始化,pageNum为0
+				function  load() {
+       			$.ajax({
+          		 url: "AddressServlet?method=1",  //需要提交的服务器地址
+          		 type: "post",  //请求的方式
+          		 //data: {"pageNum": gg},  //传递给服务器的参数
+           		 success: function (data) {  //回调函数
+          			var data=$.parseJSON(data);//从数据库获得的json对象，已经包含查询回来的数据 
+          			$("#Provinces").html('');
+          		     $.each(data, function (i, news) {
+          		     	$("#Provinces").append(
+          		     		"<option class='option1'  value="+news.provinceid">"+news.province+"</option>"
+          		     	);
+          		     });
+          		 }
+          		 });
+          		 } */
+			/* <option class="option1"  value="1" >省份/自治区</option> */
+/* 	}); */
+	/* 当Provinces值变化具体省份时触发的事件  获取某省份下的市数据  ，渲染到前台*/
+	$("#Provinces").change(function(){
+	alert("进入Provinces");
+			var value= provinces=$("#Provinces option:selected").val();//获取到省的信息
+			load(value);  //默认初始化,pageNum为0
+				function  load(value) {
+       			$.ajax({
+          		 url: "AddressServlet?method=2",  //需要提交的服务器地址
+          		 type: "post",  //请求的方式
+          		 data: {"value": value},  //传递给服务器的参数
+           		 success: function (data) {  //回调函数
+          			var data=$.parseJSON(data);//从数据库获得的json对象，已经包含查询回来的数据 
+          			$("#Citys").html('');
+          		     $.each(data, function (i, news) {
+          		     	$("#Citys").append(
+          		     		"<option class='option2'  value="+news.cityid">"+news.city+"</option>"
+          		     	);
+          		     });
+          		 }
+          		 });
+          		 }
+	});
+	/* 当Citys值变化指定市时触发事件 获取区/县数据 ，渲染到前台*/
+	$("#Citys").change(function(){
+			var value= provinces=$("#Citys option:selected").val();//获取到省的信息
+			load(value);  //默认初始化,pageNum为0
+				function  load(value) {
+       			$.ajax({
+          		 url: "AddressServlet?method=3",  //需要提交的服务器地址
+          		 type: "post",  //请求的方式
+          		 data: {"value": value},  //传递给服务器的参数
+           		 success: function (data) {  //回调函数
+          			var data=$.parseJSON(data);//从数据库获得的json对象，已经包含查询回来的数据 
+          			$("#Countys").html('');
+          		     $.each(data, function (i, news) {
+          		     	$("#Countys").append(
+          		     		"<option class='option3'  value="+news.areaid">"+news.area+"</option>"
+          		     	);
+          		     });
+          		 }
+          		 });
+          	 }
+	});
+	
+	
 
+</script>
+ -->
 </body>
 </html>

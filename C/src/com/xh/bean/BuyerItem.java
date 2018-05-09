@@ -1,6 +1,8 @@
 package com.xh.bean;
 
-public class BuyerItem {
+import java.io.Serializable;
+
+public class BuyerItem implements Serializable {
 
 	public Integer getAmount() {
 		// TODO Auto-generated method stub

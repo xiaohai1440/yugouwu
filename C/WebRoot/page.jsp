@@ -1102,10 +1102,11 @@ var num=$(".input").val();
 load(0);  //默认初始化,pageNum为0
 var data;
 function  load(pageNum) {
+alert(<%=id%>);
        $.ajax({
            url: "ProductServlet?method=finId&id=<%=id%>",  //需要提交的服务器地址
            type: "post",  //请求的方式
-           e
+           async:true,
            data: {"pageNum": pageNum},  //传递给服务器的参数
            success: function (data) {  //回调函数
            data=$.parseJSON(data);//从数据库获得的json对象，已经包含查询回来的数据                       

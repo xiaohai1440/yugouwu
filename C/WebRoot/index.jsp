@@ -146,8 +146,13 @@
 
 						<c:if test="${sessionScope.user.type>0}">
 							<li><a href="backstage/index.jsp">后台管理！</a></li>
+							
 						</c:if>
-
+						<c:if test="${sessionScope.user.type>=0}">
+							
+							<li><a href="BrowsingServlet1?method=2">我的足记！</a></li>
+						</c:if>
+						
 
 
 						<li>

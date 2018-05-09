@@ -1,5 +1,6 @@
 package com.xh.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @param <T>CartItem
  */
 //public class CartItem<T> {
-public class CartItem {
+public class CartItem implements Serializable {
 	private Product product; // 商品
 	private int num; // 数量
 	private double price; // 商品的总价

@@ -1,4 +1,5 @@
 package com.xh.bean;
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -7,7 +8,7 @@ import java.util.Map.Entry;
 /**
  * 购物车
  */
-public class Cart {
+public class Cart implements Serializable {
 
 	// 必须有一个集合来保存所有的商品
 	private Map<String, CartItem> map = new LinkedHashMap();
@@ -16,7 +17,7 @@ public class Cart {
 
 	// 新增商品
 	public void addProduct(Product product,int num) {
-		System.out.println("进入addProduct===========》");
+		System.out.println("进入addProduct===========>");
 		// 第一次购物项 肯定 为null
 		CartItem cartItem = map.get(product.getId().toString());
 		if (cartItem == null) { // 证明购物车中什么都没有
